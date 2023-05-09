@@ -1,0 +1,16 @@
+.loader {
+  @apply flex justify-center items-center;
+}
+
+.loaderimg {
+  @apply w-[200px] h-[200px];
+
+  background-size: cover;
+  background-image: url("../../../public/img/SpinnerF5.gif");
+}
+
+.header {
+  @apply text-white text-2xl mt-5;
+  font-family: "Roboto";
+  font-weight: 600;
+}

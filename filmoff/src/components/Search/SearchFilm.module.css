@@ -1,0 +1,117 @@
+.recentSearches {
+  background-color: white;
+  color: black;
+  font-family: "Roboto";
+  border-radius: 5px;
+  position: absolute;
+  width: 800px;
+  max-width: calc(100vw - 240px);
+  max-height: 300px;
+  padding: 10px;
+  overflow-y: auto;
+  z-index: 10;
+  margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.recentSearch {
+  padding: 5px 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid;
+  border-radius: 10px;
+  opacity: 1;
+}
+
+.recentSearch:hover {
+  background-color: #8524a7;
+}
+
+.boxSearchHistory {
+  @apply flex-col;
+}
+
+.headerHistory {
+  @apply flex;
+  font-family: "Roboto";
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.lineSearches {
+  @apply flex flex-wrap phone:gap-4 gap-2 mt-4;
+}
+
+.container {
+  position: relative;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  flex-grow: 1;
+  max-width: 900px;
+  width: 100%;
+  min-width: 200px;
+}
+
+.input {
+  width: 800px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: black;
+  border: 2px solid black;
+  font-family: "Roboto";
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  transform: translateY(-10px);
+  max-width: calc(100vw - 240px);
+}
+
+@media (max-width: 480px) {
+  .input {
+    max-width: calc(100vw - 170px);
+  }
+  .recentSearches {
+    max-width: calc(100vw - 170px);
+  }
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.input:not(:focus) {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s ease-in-out;
+}
+
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close {
+  background-image: url("../../../public/img/close.svg");
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.close:hover {
+  background-image: url("../../../public/img/closeHover.svg");
+}

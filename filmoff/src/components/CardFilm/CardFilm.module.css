@@ -1,0 +1,172 @@
+.moviecard {
+  @apply w-[264px] h-[352px] overflow-hidden relative;
+}
+
+.moviewrapper {
+  background-color: rgb(82, 82, 91);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  height: 100%;
+}
+
+.movieurl {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.movieposter {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.movienoposter .moviedescription {
+  opacity: 1;
+}
+
+.movienoposter .movieposter {
+  display: none;
+}
+
+.moviedescription {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.5) 26.43%,
+    rgba(0, 0, 0, 0.85) 72.41%
+  );
+
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.moviecard:hover .moviedescription {
+  opacity: 1;
+}
+
+.movierating {
+  @apply flex items-center justify-between;
+  color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  line-height: normal;
+  text-align: center;
+  font-size: 14px;
+}
+
+.movieImdbRating {
+  background-image: url("../../../public/img/yellowStar.svg");
+  background-size: 100%;
+  background-image: cover;
+  height: 44px;
+  width: 44px;
+  display: inline-block;
+  margin-right: 4px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  @apply flex items-center justify-center;
+}
+
+.movieUserRating {
+  background-image: url("../../../public/img/purpleStar.svg");
+  background-size: 100%;
+  height: 44px;
+  width: 44px;
+  display: inline-block;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  @apply flex items-center justify-center;
+}
+
+.movieUserRating:hover {
+  filter: brightness(300%);
+}
+
+.movietitle {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 36px;
+  color: #fff;
+  margin: 4px 0 0;
+}
+
+.moviefooter {
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.607);
+  display: flex;
+  justify-content: space-between;
+}
+
+.boxUser {
+  @apply flex items-center justify-center gap-2;
+}
+
+.movieSave {
+  background-size: 100%;
+  height: 44px;
+  width: 44px;
+
+  display: inline-block;
+}
+
+.movieSave:hover {
+  filter: brightness(300%);
+}
+
+.save {
+  background-image: url("../../../public/img/clickToSave.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  height: 42px;
+  width: 42px;
+}
+
+.unsave {
+  background-image: url("../../../public/img/clickToUnsave.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 42px;
+  width: 42px;
+}
+
+.loader {
+  @apply flex justify-center items-center absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.loaderimg {
+  @apply w-[200px] h-[200px];
+
+  background-size: cover;
+  background-image: url("../../../public/img/Spinner.svg");
+}

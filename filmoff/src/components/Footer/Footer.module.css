@@ -1,0 +1,18 @@
+.footerLg {
+  @apply w-full bottom-0 absolute h-[72px] text-white p-3;
+  background: #8524a7;
+}
+
+.list_footerLg {
+  @apply flex flex-col justify-center items-center font-normal text-base gap-2;
+  font-family: "Roboto";
+  list-style-type: none;
+}
+
+.list_footerLg > li {
+  @apply flex justify-center items-center gap-5;
+}
+
+.button {
+  @apply w-16 text-gray-400 hover:text-body_bg;
+}

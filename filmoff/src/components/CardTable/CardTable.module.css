@@ -1,0 +1,3 @@
+.table {
+  @apply mt-9 flex justify-center items-start gap-6 flex-wrap w-full;
+}
