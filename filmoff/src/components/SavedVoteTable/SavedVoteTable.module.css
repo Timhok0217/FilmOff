@@ -1,0 +1,65 @@
+.moviecard {
+  @apply w-[128px] h-[176px] overflow-hidden relative;
+}
+
+.moviewrapper {
+  background-color: rgb(82, 82, 91);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  height: 100%;
+}
+
+.movieurl {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.movieposter {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.movienoposter .movieposter {
+  display: none;
+}
+
+.movieUserRating {
+  background-image: url('../../../public/img/purpleStar.svg');
+  cursor: pointer;
+  background-size: 100%;
+  height: 56px;
+  width: 56px;
+  display: inline-block;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  @apply flex items-center justify-center ml-10;
+}
+
+.movieUserRating:hover {
+  filter: brightness(300%);
+}
+
+.movieUserRatingEdit {
+  background-image: url('../../../public/img/purpleStar.svg');
+  cursor: pointer;
+  background-size: 100%;
+  height: 72px;
+  width: 72px;
+  display: inline-block;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  @apply flex items-center justify-center ml-10;
+}
+
+.movieUserRatingEdit:hover {
+  filter: brightness(300%);
+}

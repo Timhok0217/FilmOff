@@ -4,7 +4,11 @@ import axios from 'axios'
 import CardTable from '../components/CardTable/CardTable'
 import styles from './styles/HomePage.module.css'
 
-const HomePage: React.FC<any> = ({ film }) => {
+interface Props {
+  film: string
+}
+
+const HomePage: React.FC<Props> = ({ film }) => {
   const [popularFilms, setPopularFilms] = useState([])
   const [searchResults, setSearchResults] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -20,7 +24,7 @@ const HomePage: React.FC<any> = ({ film }) => {
           setPopularFilms(savedFilms as any)
         } else {
           const response = await axios.get(
-            'https://imdb-api.com/en/API/MostPopularMovies/k_43to2og1'
+            'https://imdb-api.com/en/API/MostPopularMovies/k_wekuwc81'
           )
           const { data } = response
           setPopularFilms(data.items)
@@ -46,7 +50,7 @@ const HomePage: React.FC<any> = ({ film }) => {
             localStorage.getItem('allSearchResults') || '[]'
           )
           let cachedResults = allSearchResults.find(
-            (item: { title: any }) => item.title === film
+            (item: { title: string }) => item.title === film
           )
 
           if (cachedResults) {
@@ -54,7 +58,7 @@ const HomePage: React.FC<any> = ({ film }) => {
             localStorage.setItem('lastSearch', film)
           } else {
             const response = await axios.get(
-              `https://imdb-api.com/API/AdvancedSearch/k_43to2og1?title=${film}&user_rating=,10`
+              `https://imdb-api.com/API/AdvancedSearch/k_084d6kh1?title=${film}&user_rating=,10`
             )
             const { data } = response
             setSearchResults(data.results)
@@ -91,7 +95,7 @@ const HomePage: React.FC<any> = ({ film }) => {
       localStorage.getItem('allSearchResults') || '[]'
     )
     const cachedResults = allSearchResults.find(
-      (item: { title: any }) => item.title === lastSearch
+      (item: { title: string }) => item.title === lastSearch
     )
     if (cachedResults) {
       setSearchResults(cachedResults.results)
@@ -107,7 +111,7 @@ const HomePage: React.FC<any> = ({ film }) => {
         localStorage.getItem('allSearchResults') || '[]'
       )
       const index = allSearchResults.findIndex(
-        (item: { title: any }) => item.title === film
+        (item: { title: string }) => item.title === film
       )
 
       if (index !== -1) {

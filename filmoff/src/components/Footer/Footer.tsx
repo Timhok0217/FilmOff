@@ -9,7 +9,7 @@ function Footer() {
         <li>
           <span>
             <Link to={'/about'}>
-              <button className={styles.button}>About</button>
+              <button className={styles.button}>О нас</button>
             </Link>
           </span>
           <span>
@@ -18,7 +18,7 @@ function Footer() {
         </li>
         <li>
           <p className="text-xs">
-            This content create with materials from IMDB-API.
+            Контент для приложения берется из IMDB-API.
           </p>
         </li>
       </ul>

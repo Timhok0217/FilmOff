@@ -1,0 +1,8 @@
+.page {
+  @apply mt-8 px-2 sm:text-xl text-lg;
+  font-family: 'Roboto';
+}
+
+.aboutBox {
+  @apply flex flex-col justify-center items-center gap-10 text-white flex-wrap lg:flex-nowrap;
+}

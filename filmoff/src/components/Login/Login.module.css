@@ -1,0 +1,36 @@
+.form {
+  @apply bg-gray-500 p-6 w-[100%] rounded-xl max-w-[400px] mt-10;
+  border: 3px #8524a7 solid;
+  font-family: 'Roboto', sans-serif;
+}
+
+.formBox {
+  @apply flex flex-col gap-5 justify-center;
+}
+
+.userInfo {
+  @apply flex flex-col gap-5 justify-center items-center;
+}
+
+.mail {
+  @apply flex flex-col items-start;
+}
+
+.input {
+  @apply w-[100%] rounded-lg h-10 px-5 py-2 text-black;
+  border: 3px #8524a7 solid;
+}
+
+.button {
+  @apply w-[100%] my-1 rounded-2xl border-0 text-white cursor-pointer h-12 text-lg hover:scale-105;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}

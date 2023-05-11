@@ -1,0 +1,21 @@
+.comment {
+  @apply flex flex-col bg-gray-500 rounded-lg p-3  w-[100%] min-w-[200px]  max-w-[800px] flex-wrap;
+  border: 3px #8524a7 solid;
+  font-family: 'Roboto';
+}
+
+.header {
+  @apply flex justify-between;
+}
+
+.button {
+  background-image: url('../../../public/img/close.svg');
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.button:hover {
+  background-image: url('../../../public/img/closeHover.svg');
+}

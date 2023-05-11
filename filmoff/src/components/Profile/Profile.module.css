@@ -1,0 +1,44 @@
+.page {
+  @apply mt-8 px-2 phone:text-xl text-lg text-white;
+  font-family: 'Roboto';
+}
+
+.main {
+  @apply flex flex-col justify-center items-center;
+  font-family: 'Roboto', sans-serif;
+}
+.profile {
+  @apply bg-gray-500 p-6 w-[100%] rounded-xl max-w-[450px] mt-10;
+  border: 3px #8524a7 solid;
+  font-family: 'Roboto', sans-serif;
+}
+
+.header {
+  @apply text-2xl;
+}
+
+.infoLine {
+  @apply flex gap-4 justify-between phone:justify-normal;
+}
+
+.infoBox {
+  @apply flex flex-col gap-6 my-10;
+}
+
+.nameInfo {
+  @apply flex phone:min-w-[200px] min-w-[125px];
+}
+
+.button {
+  @apply w-[100%] my-1 rounded-2xl border-0 text-white cursor-pointer h-12 text-lg hover:scale-105;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}

@@ -1,0 +1,13 @@
+.page {
+  @apply mt-8 px-2 phone:text-xl text-lg text-white;
+  font-family: 'Roboto';
+}
+
+.choose {
+  @apply flex justify-center gap-10;
+}
+
+.active {
+  text-decoration: underline;
+  text-decoration-thickness: 7px;
+}

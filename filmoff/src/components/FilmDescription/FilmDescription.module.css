@@ -1,0 +1,132 @@
+.page {
+  @apply mt-8 px-2 phone:text-base text-sm;
+  font-family: 'Roboto';
+}
+
+.imgAndInfo {
+  @apply flex justify-center items-center gap-6 text-white flex-wrap lg:flex-nowrap;
+}
+
+.img {
+  @apply phone:w-64 w-52;
+  min-width: 150px;
+}
+
+.imgSet {
+  @apply w-64;
+}
+
+.name {
+  @apply md:text-2xl  text-xl mb-3;
+}
+
+.header {
+  @apply text-lg;
+}
+
+.info {
+  @apply flex flex-col justify-start phone:gap-3 gap-2 bg-gray-500 rounded-lg p-2 sm:p-5;
+  border: 3px #8524a7 solid;
+}
+
+.infoLine {
+  @apply flex justify-start items-center phone:gap-6 gap-2;
+}
+
+.nameInfo {
+  @apply flex;
+  min-width: 125px;
+}
+
+.valInfo {
+  @apply flex max-w-[220px] phone:max-w-full;
+}
+
+.boxUser {
+  @apply flex justify-center items-center gap-20 mb-2;
+}
+
+.save:hover {
+  filter: brightness(300%);
+}
+
+.unsave:hover {
+  filter: brightness(300%);
+}
+
+.save {
+  background-image: url('../../../public/img/clickToSave.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  height: 40px;
+  width: 40px;
+}
+
+.unsave {
+  background-image: url('../../../public/img/clickToUnsave.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40px;
+  width: 40px;
+}
+
+.vote {
+  background-image: url('../../../public/img/purpleStar.svg');
+  background-size: 100%;
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  @apply flex items-center justify-center;
+}
+
+.vote:hover {
+  filter: brightness(300%);
+}
+
+.func {
+  @apply flex flex-col items-center;
+}
+
+.comment {
+  @apply mt-16 flex flex-col justify-start items-start gap-3 text-white flex-wrap lg:flex-nowrap px-4;
+}
+.headerComment {
+  @apply text-xl;
+}
+.bodyComment {
+  @apply flex flex-col w-[100%];
+}
+
+.buttonWrite {
+  @apply w-32 my-4 rounded-2xl border-0 text-white cursor-pointer h-12 text-sm hover:scale-105 flex justify-center items-center;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+}
+
+.buttonWrite:focus {
+  outline: none;
+}
+
+.buttonWrite:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.textCommentBox {
+  @apply bg-gray-500 
+  max-w-[800px] min-w-[200px] w-[fit] h-20 rounded-xl px-5 py-2;
+  border: 3px #8524a7 solid;
+}
+
+.textComment {
+}
+
+.tableComments {
+  @apply flex flex-col gap-4 min-w-[200px]  max-w-[800px] flex-wrap;
+}

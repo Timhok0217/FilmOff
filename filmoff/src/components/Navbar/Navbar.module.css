@@ -12,13 +12,13 @@
 }
 
 .headerHidden {
-  transform: translateY(-450%);
+  transform: translateY(-500%);
   transition: transform 0.5s ease-in-out;
 }
 
 .header::before,
 .header::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   bottom: 0;
@@ -37,13 +37,13 @@
 }
 
 .headerTitle {
-  @apply font-semibold text-2xl lg:text-3xl leading-3 ml-2  text-white;
-  font-family: "Roboto";
+  @apply font-semibold text-2xl sm:text-3xl leading-3 ml-2  text-white;
+  font-family: 'Roboto';
 }
 
 .listHeader {
   @apply flex justify-center items-center font-normal text-lg lg:text-xl sm:gap-12 phone:gap-7 lg:gap-16 gap-4;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   list-style-type: none;
   flex-wrap: nowrap;
 }
@@ -66,15 +66,15 @@
 }
 
 .profileIcon {
-  background-image: url("../../../public/img/profileIcon.svg");
+  background-image: url('../../../public/img/profileIcon.svg');
   @apply w-8 h-8 bg-auto bg-no-repeat bg-cover;
 }
 .profileIcon:hover {
-  background-image: url("../../../public/img/profileIconHover.svg");
+  background-image: url('../../../public/img/profileIconHover.svg');
 }
 
 .search {
-  background-image: url("../../../public/img/search.svg");
+  background-image: url('../../../public/img/search.svg');
   @apply w-8 h-8 bg-auto bg-no-repeat bg-cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -82,5 +82,5 @@
 }
 
 .search:hover {
-  background-image: url("../../../public/img/searchHover.svg");
+  background-image: url('../../../public/img/searchHover.svg');
 }

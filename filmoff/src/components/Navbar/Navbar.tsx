@@ -4,7 +4,13 @@ import SearchFilm from '../Search/SearchFilm'
 
 import styles from './Navbar.module.css'
 
-const Navbar: React.FC<any> = ({ film, onFilmChange }) => {
+
+interface NavbarProps {
+  film: string,
+  onFilmChange: (film: string) => void
+}
+
+const Navbar: React.FC<NavbarProps> = ({ film, onFilmChange }) => {
   const [showSearch, setShowSearch] = useState(false)
   const [isNavVisible, setIsNavVisible] = useState(true)
   const [prevScrollPos, setPrevScrollPos] = useState(0)

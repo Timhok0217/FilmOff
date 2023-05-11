@@ -1,0 +1,107 @@
+.moviecard {
+  @apply w-[192px] h-[256px] overflow-hidden relative;
+}
+
+.moviewrapper {
+  background-color: rgb(82, 82, 91);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  height: 100%;
+}
+
+.movieurl {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.movieposter {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.movienoposter .moviedescription {
+  opacity: 1;
+}
+
+.movienoposter .movieposter {
+  display: none;
+}
+
+.moviedescription {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 26.43%,
+    rgba(0, 0, 0, 0.4) 72.41%
+  );
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.moviecard:hover .moviedescription {
+  opacity: 1;
+}
+
+.movierating {
+  @apply flex items-center justify-between;
+  color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  line-height: normal;
+  text-align: center;
+  font-size: 14px;
+}
+
+.boxUser {
+  @apply flex items-center justify-center gap-2;
+}
+
+.movieSave {
+  background-size: 100%;
+  height: 44px;
+  width: 44px;
+
+  display: inline-block;
+}
+
+.movieSave:hover {
+  filter: brightness(300%);
+}
+
+.save {
+  background-image: url('../../../public/img/clickToSave.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  height: 42px;
+  width: 42px;
+}
+
+.unsave {
+  background-image: url('../../../public/img/clickToUnsave.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 42px;
+  width: 42px;
+}

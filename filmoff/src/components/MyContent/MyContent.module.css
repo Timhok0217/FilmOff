@@ -1,0 +1,44 @@
+.page {
+  @apply mt-8 px-2 phone:text-xl text-lg text-white flex flex-col justify-center items-center;
+  font-family: 'Roboto';
+}
+
+.header {
+  @apply text-2xl;
+}
+
+.mainWatched {
+  @apply bg-gray-500 p-6  rounded-xl max-w-[1000px] mt-10;
+  border: 3px #8524a7 solid;
+  font-family: 'Roboto', sans-serif;
+}
+
+.headerBlock {
+  @apply text-xl;
+}
+
+.bodyWatched {
+  @apply w-full;
+}
+
+.tableWatched {
+  @apply mt-9 flex justify-center items-start gap-6 flex-wrap w-full;
+}
+
+.mainVote {
+  @apply bg-gray-500 p-6  rounded-xl max-w-[1000px] mt-10;
+  border: 3px #8524a7 solid;
+  font-family: 'Roboto', sans-serif;
+}
+
+.headerBlock {
+  @apply text-xl;
+}
+
+.bodyVote {
+  @apply w-full;
+}
+
+.tableVote {
+  @apply mt-9 flex flex-col justify-center items-start gap-6 flex-wrap w-full;
+}
