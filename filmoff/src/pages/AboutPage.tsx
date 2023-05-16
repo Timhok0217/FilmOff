@@ -5,6 +5,7 @@ const AboutPage = () => {
   return (
     <>
       <div className={styles.page}>
+        <div>О нас</div>
         <div className={styles.aboutBox}>
           <div>Работа выполнена Тимошевским Тимофеем!</div>
           <div>Для курса Тинькофф Frontend 2023!</div>

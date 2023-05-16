@@ -1,61 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Login from '../components/Login/Login'
 import Registration from '../components/Registration/Registration'
 import styles from './styles/ProfilePage.module.css'
 import Profile from '../components/Profile/Profile'
 import { useNavigate } from 'react-router-dom'
-
-interface User {
-  id: number
-  login: string
-  password: string
-  nickname: string
-  savedFilms: number
-  savedFilmsList: Film[]
-  vote: number
-  voteList: Vote[]
-  comments: number
-}
-
-interface Film {
-  id: string
-  image: string
-}
-
-interface Vote {
-  id: string
-  image: string
-  vote: number
-}
+import { auth } from '../config/firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 interface Props {
-  user: User
   loggedIn: boolean
   handleLogout: () => void
   onLoginStatusChange: (status: boolean) => void
 }
 
 const ProfilePage: React.FC<Props> = ({
-  user,
   loggedIn,
   handleLogout,
   onLoginStatusChange,
 }) => {
   const [showLogin, setShowLogin] = useState(true)
   const [showRegistration, setShowRegistration] = useState(false)
-
   const [mistake, setMistake] = useState('')
-
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('login')!)
-    if (user) {
-      onLoginStatusChange(true)
-    }
-  }, [])
-
-  function handleLoginClick() {
+  const handleLoginClick = () => {
     setShowLogin(true)
     setShowRegistration(false)
   }
@@ -65,13 +33,13 @@ const ProfilePage: React.FC<Props> = ({
     setShowRegistration(true)
   }
 
-  const handleLogin = (login: string, password: string) => {
-    if (login === user.login && password === user.password) {
+  const handleLogin = async (login: string, password: string) => {
+    try {
+      await signInWithEmailAndPassword(auth, login, password)
       onLoginStatusChange(true)
-      localStorage.setItem('login', JSON.stringify(user))
       setMistake('')
-      navigate(`/profile/${user.id}`)
-    } else {
+      navigate(`/profile/${auth.currentUser?.uid}`)
+    } catch (error) {
       setMistake('Неверный логин или пароль')
     }
   }
@@ -80,7 +48,7 @@ const ProfilePage: React.FC<Props> = ({
     <>
       {loggedIn ? (
         <div className={styles.page}>
-          <Profile user={user} handleLogout={handleLogout} />
+          <Profile handleLogout={handleLogout} />
         </div>
       ) : (
         <div className={styles.page}>
@@ -98,7 +66,7 @@ const ProfilePage: React.FC<Props> = ({
               Регистрация
             </button>
           </div>
-          <div className="flex justify-center">
+          <div className={styles.choosing}>
             {showLogin && <Login onLogin={handleLogin} mistake={mistake} />}
             {showRegistration && <Registration />}
           </div>

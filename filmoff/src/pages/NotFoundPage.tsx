@@ -1,9 +1,11 @@
 import React from 'react'
 
+import styles from './styles/NotFoundPage.module.css'
+
 const NotFoundPage = () => {
   return (
     <>
-      <div className="mt-8 px-2 sm:text-xl text-lg text-white">
+      <div className={styles.page}>
         Ошбика 404! Попробуй перейти на главную страницу!
       </div>
     </>

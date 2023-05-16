@@ -1,12 +1,58 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import styles from './SavedVoteTable.module.css'
 import { Link } from 'react-router-dom'
 
+import { db } from '../../config/firebase'
+import { auth } from '../../config/firebase'
+import {
+  collection,
+  getDocs,
+  doc,
+  query,
+  where,
+  updateDoc,
+} from 'firebase/firestore'
+import { onAuthStateChanged } from 'firebase/auth'
+
+interface VoteFilm {
+  id: string
+  image?: string | null
+  title: string
+  vote?: string
+  userId: string
+  idDoc: string
+}
+
 const SavedVoteTable = ({ votes, index }: any) => {
+  const voteFilmsRef = collection(db, 'voteFilms')
+
+  const [voteFilms, setVoteFilms] = useState<VoteFilm[]>([])
   const [vote, setVote] = useState(votes.vote)
   const [isEditing, setIsEditing] = useState(false)
   const [prevVote, setPrevVote] = useState(votes.vote)
+
+  const fetchDBVoteFilms = async () => {
+    const userId = auth.currentUser?.uid
+    if (userId) {
+      const q = query(voteFilmsRef, where('userId', '==', userId))
+      const queryDateDB = await getDocs(q)
+      const votes = queryDateDB.docs.map(
+        (doc) => ({ idDoc: doc.id, ...doc.data() } as VoteFilm)
+      )
+      setVoteFilms(votes)
+    }
+  }
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        fetchDBVoteFilms()
+      }
+    })
+
+    return unsubscribe
+  }, [])
 
   const handleVoteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVote(e.target.value)
@@ -15,14 +61,28 @@ const SavedVoteTable = ({ votes, index }: any) => {
   const handleBlur = () => {
     setIsEditing(false)
     if (vote !== prevVote) {
-      setVote(prevVote)
+      setPrevVote(vote)
+      const voteDocRef = doc(db, 'voteFilms', votes.idDoc)
+      try {
+        updateDoc(voteDocRef, { vote: vote })
+      } catch (error) {
+        console.error('Error updt BD: ', error)
+      }
     }
   }
 
-  const handleVoteSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleVoteSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setPrevVote(vote)
     setIsEditing(false)
+    setPrevVote(vote)
+    if (vote !== prevVote) {
+      const voteDocRef = doc(db, 'voteFilms', votes.idDoc)
+      try {
+        await updateDoc(voteDocRef, { vote: vote })
+      } catch (error) {
+        console.error('Error updt BD: ', error)
+      }
+    }
   }
 
   const handleEditClick = () => {
@@ -30,10 +90,11 @@ const SavedVoteTable = ({ votes, index }: any) => {
   }
 
   return (
-    <div className="flex items-center gap-4">
+    <div className={styles.page}>
       <div>{index + 1}</div>
 
       <div className={styles.moviecard}>
+        <div className={styles.header}>{votes.title}</div>
         <div className={styles.moviewrapper}>
           <Link to={`/cardFilm/${votes.id}`} className={styles.movieurl}>
             <img
@@ -62,7 +123,7 @@ const SavedVoteTable = ({ votes, index }: any) => {
               max={10}
               step={0.5}
               autoFocus
-              className="text-black bg-gray-500 w-12 h-5"
+              className={styles.input}
             />
           </form>
         ) : (

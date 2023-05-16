@@ -3,47 +3,30 @@ import { useNavigate } from 'react-router-dom'
 
 import MyContent from '../components/MyContent/MyContent'
 
-interface User {
-  id: number
-  login: string
-  password: string
-  nickname: string
-  savedFilms: number
-  savedFilmsList: Film[]
-  vote: number
-  voteList: Vote[]
-  comments: number
-}
+import { auth } from '../config/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
 
-interface Film {
-  id: string
-  image: string
-}
-
-interface Vote {
-  id: string
-  image: string
-  vote: number
-}
-interface Props {
-  user: User
-}
-
-const MyPage: React.FC<Props> = ({ user }) => {
+const MyPage = () => {
   const navigate = useNavigate()
 
   const [showContent, setShowContent] = useState(false)
 
   useEffect(() => {
-    if (!localStorage.getItem('login')) {
-      setShowContent(false)
-      navigate('/profile')
-    } else {
-      setShowContent(true)
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setShowContent(true)
+      } else {
+        setShowContent(false)
+        navigate('/profile')
+      }
+    })
+
+    return () => {
+      unsubscribe()
     }
   }, [])
 
-  return <>{showContent && <MyContent user={user} />}</>
+  return <>{showContent && <MyContent />}</>
 }
 
 export default MyPage

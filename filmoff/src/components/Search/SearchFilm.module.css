@@ -1,7 +1,7 @@
 .recentSearches {
   background-color: white;
   color: black;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   border-radius: 5px;
   position: absolute;
   width: 800px;
@@ -36,7 +36,7 @@
 
 .headerHistory {
   @apply flex;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-size: 17px;
   font-weight: 500;
 }
@@ -67,7 +67,7 @@
   font-size: 16px;
   color: black;
   border: 2px solid black;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-weight: 500;
   padding: 10px;
   border-radius: 5px;
@@ -105,7 +105,7 @@
 }
 
 .close {
-  background-image: url("../../../public/img/close.svg");
+  background-image: url('../../../public/img/close.svg');
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;
@@ -113,5 +113,5 @@
 }
 
 .close:hover {
-  background-image: url("../../../public/img/closeHover.svg");
+  background-image: url('../../../public/img/closeHover.svg');
 }

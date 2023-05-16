@@ -1,6 +1,7 @@
 .page {
-  @apply mt-8 px-2 phone:text-xl text-lg text-white;
+  @apply mt-10 px-2 phone:text-xl text-lg text-white;
   font-family: 'Roboto';
+  font-weight: 500;
 }
 
 .main {
@@ -8,17 +9,18 @@
   font-family: 'Roboto', sans-serif;
 }
 .profile {
-  @apply bg-gray-500 p-6 w-[100%] rounded-xl max-w-[450px] mt-10;
+  @apply bg-gray-500 phone:px-10 px-5 py-6 w-[100%] rounded-xl max-w-[525px] mt-10;
   border: 3px #8524a7 solid;
   font-family: 'Roboto', sans-serif;
+  transition: padding 0.3s ease;
 }
 
 .header {
-  @apply text-2xl;
+  @apply text-3xl;
 }
 
 .infoLine {
-  @apply flex gap-4 justify-between phone:justify-normal;
+  @apply flex gap-4 justify-between;
 }
 
 .infoBox {
@@ -26,7 +28,11 @@
 }
 
 .nameInfo {
-  @apply flex phone:min-w-[200px] min-w-[125px];
+  @apply flex phone:min-w-[110px] min-w-[75px];
+}
+
+.buttonDiv {
+  @apply flex justify-center items-center;
 }
 
 .button {
@@ -41,4 +47,70 @@
 
 .button:active {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.loader {
+  @apply flex justify-center items-center;
+}
+
+.loaderimg {
+  @apply w-[200px] h-[200px];
+
+  background-size: cover;
+  background-image: url('../../../public/img/SpinnerF5.gif');
+}
+
+.infoCheck {
+  @apply flex justify-center items-center gap-3;
+}
+
+.checkboxContainer {
+  @apply flex justify-center items-center;
+}
+
+.checkbox {
+  /* убираем стили */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  min-width: 26px;
+  height: 26px;
+  margin-right: 8px;
+  border-radius: 2px;
+
+  background-color: #fff;
+  background-image: url('../../../public/img/checkBox.svg');
+  background-repeat: no-repeat;
+  background-image: cover;
+  background-size: 135%;
+  background-position: center center;
+  border: 3px #8524a7 solid;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #e2e8f0;
+  }
+  &:checked {
+    background-image: url('../../../public/img/checkBoxActive.svg');
+  }
+}
+
+.mainWatched {
+  @apply bg-gray-500 p-5  rounded-xl max-w-[1200px] mt-14;
+  border: 3px #8524a7 solid;
+  font-family: 'Roboto', sans-serif;
+}
+
+.headerBlock {
+  @apply text-2xl flex justify-center gap-3;
+}
+
+.bodyWatched {
+  @apply w-full;
+}
+
+.tableWatched {
+  @apply mt-9 flex justify-center items-start flex-wrap w-full;
 }

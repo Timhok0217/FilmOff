@@ -1,11 +1,22 @@
 .comment {
-  @apply flex flex-col bg-gray-500 rounded-lg p-3  w-[100%] min-w-[200px]  max-w-[800px] flex-wrap;
+  @apply flex flex-col bg-gray-500 rounded-lg p-3 gap-1 w-[100%] min-w-[200px]  max-w-[800px] flex-wrap;
   border: 3px #8524a7 solid;
   font-family: 'Roboto';
 }
 
 .header {
-  @apply flex justify-between;
+  @apply flex justify-between items-center;
+}
+
+.time {
+  @apply text-sm;
+}
+
+.user {
+  @apply text-lg mb-2 hover:scale-105;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
 }
 
 .button {

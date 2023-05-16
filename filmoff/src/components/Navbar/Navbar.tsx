@@ -4,9 +4,8 @@ import SearchFilm from '../Search/SearchFilm'
 
 import styles from './Navbar.module.css'
 
-
 interface NavbarProps {
-  film: string,
+  film: string
   onFilmChange: (film: string) => void
 }
 
@@ -60,7 +59,6 @@ const Navbar: React.FC<NavbarProps> = ({ film, onFilmChange }) => {
       className={`${styles.header} ${isNavVisible ? '' : styles.headerHidden}`}
     >
       <Link to="/" className={styles.headerTitle}>
-        {' '}
         FilmOff
       </Link>
       <ul className={styles.listHeader}>

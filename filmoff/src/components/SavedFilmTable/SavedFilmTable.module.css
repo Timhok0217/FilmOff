@@ -1,5 +1,5 @@
 .moviecard {
-  @apply w-[192px] h-[256px] overflow-hidden relative;
+  @apply w-[192px] h-[256px] overflow-hidden relative my-2.5 mx-4;
 }
 
 .moviewrapper {
@@ -24,6 +24,16 @@
   object-fit: cover;
 }
 
+.title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 36px;
+  color: #fff;
+  margin: 4px 0 0;
+}
+
 .movienoposter .moviedescription {
   opacity: 1;
 }
@@ -43,8 +53,8 @@
   padding: 16px;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.4) 26.43%,
-    rgba(0, 0, 0, 0.4) 72.41%
+    rgba(0, 0, 0, 0.5) 26.43%,
+    rgba(0, 0, 0, 0.5) 72.41%
   );
   position: absolute;
 

@@ -1,6 +1,18 @@
 .page {
-  @apply mt-8 px-2 phone:text-base text-sm;
+  @apply mt-10 px-2 phone:text-base text-sm;
   font-family: 'Roboto';
+  font-weight: 500;
+}
+
+.loader {
+  @apply flex justify-center items-center;
+}
+
+.loaderimg {
+  @apply w-[200px] h-[200px];
+
+  background-size: cover;
+  background-image: url('../../../public/img/SpinnerF5.gif');
 }
 
 .imgAndInfo {
@@ -8,8 +20,9 @@
 }
 
 .img {
-  @apply phone:w-64 w-52;
+  @apply phone:w-64 w-52 rounded-lg;
   min-width: 150px;
+  border: 3.5px #8524a7 solid;
 }
 
 .imgSet {
@@ -25,12 +38,15 @@
 }
 
 .info {
-  @apply flex flex-col justify-start phone:gap-3 gap-2 bg-gray-500 rounded-lg p-2 sm:p-5;
+  @apply flex flex-col justify-start phone:gap-3 gap-2 bg-gray-500 rounded-lg p-3 sm:p-5;
   border: 3px #8524a7 solid;
+  transition: gap 0.3s ease;
+  transition: padding 0.3s ease;
 }
 
 .infoLine {
-  @apply flex justify-start items-center phone:gap-6 gap-2;
+  @apply flex justify-start items-center phone:gap-20 gap-3;
+  transition: gap 0.3s ease;
 }
 
 .nameInfo {
@@ -59,25 +75,28 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
   background-size: 100%;
-  height: 40px;
-  width: 40px;
+  height: 46px;
+  width: 46px;
 }
 
 .unsave {
   background-image: url('../../../public/img/clickToUnsave.svg');
+  cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 40px;
-  width: 40px;
+  height: 46px;
+  width: 46px;
 }
 
-.vote {
+.movieUserRating {
   background-image: url('../../../public/img/purpleStar.svg');
+  cursor: pointer;
   background-size: 100%;
-  height: 40px;
-  width: 40px;
+  height: 46px;
+  width: 46px;
   display: inline-block;
 
   font-family: 'Roboto';
@@ -86,8 +105,30 @@
   @apply flex items-center justify-center;
 }
 
-.vote:hover {
+.movieUserRating:hover {
   filter: brightness(300%);
+}
+
+.movieUserRatingEdit {
+  background-image: url('../../../public/img/purpleStar.svg');
+  cursor: pointer;
+  background-size: 100%;
+  height: 72px;
+  width: 72px;
+  display: inline-block;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  @apply flex items-center justify-center;
+}
+
+.movieUserRatingEdit:hover {
+  filter: brightness(300%);
+}
+
+.inputstyles {
+  @apply text-black bg-gray-500 w-12 h-5;
 }
 
 .func {
@@ -95,13 +136,18 @@
 }
 
 .comment {
-  @apply mt-16 flex flex-col justify-start items-start gap-3 text-white flex-wrap lg:flex-nowrap px-4;
+  @apply mt-16 flex flex-col justify-start items-start gap-3 text-white flex-wrap lg:flex-nowrap sm:px-10 px-2;
+  transition: padding 0.3s ease;
 }
 .headerComment {
-  @apply text-xl;
+  @apply text-2xl;
 }
 .bodyComment {
   @apply flex flex-col w-[100%];
+}
+
+.tableComments {
+  @apply flex flex-col items-start gap-4 min-w-[200px]  max-w-[800px] flex-wrap;
 }
 
 .buttonWrite {
@@ -124,9 +170,6 @@
   border: 3px #8524a7 solid;
 }
 
-.textComment {
-}
-
-.tableComments {
-  @apply flex flex-col gap-4 min-w-[200px]  max-w-[800px] flex-wrap;
+.buttonsGaps {
+  @apply flex gap-10;
 }

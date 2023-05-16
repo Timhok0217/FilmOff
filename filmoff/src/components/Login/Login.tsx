@@ -1,18 +1,23 @@
 import React, { useState } from 'react'
 import styles from './Login.module.css'
 
-const Login = ({ onLogin, mistake }: any) => {
+interface Props {
+  onLogin: (login: string, password: string) => void
+  mistake: string
+}
+
+const Login: React.FC<Props> = ({ onLogin, mistake }) => {
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     onLogin(login, password)
   }
 
   return (
     <div className={styles.form}>
-      <form className={styles.formBox} onSubmit={handleSubmit}>
+      <div className={styles.formBox}>
         <div className={styles.mail}>
           <label htmlFor="email">Логин:</label>
           <input
@@ -38,12 +43,16 @@ const Login = ({ onLogin, mistake }: any) => {
           />
         </div>
         {mistake && <div>Неправильный логин или пароль!</div>}
-        <div className="flex justify-center items-center">
-          <button type="submit" className={styles.button}>
+        <div className={styles.buttonDiv}>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className={styles.button}
+          >
             Войти
           </button>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

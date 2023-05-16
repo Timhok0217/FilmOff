@@ -5,6 +5,10 @@
   padding-bottom: 120px;
 }
 
+.h {
+  @apply h-20;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

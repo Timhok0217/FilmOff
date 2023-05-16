@@ -1,5 +1,10 @@
+.page {
+  @apply flex items-center gap-6 sm:gap-12;
+  transition: gap 0.3s ease;
+}
+
 .moviecard {
-  @apply w-[128px] h-[176px] overflow-hidden relative;
+  @apply overflow-hidden relative hover:scale-105 hover:brightness-125;
 }
 
 .moviewrapper {
@@ -9,6 +14,13 @@
   cursor: pointer;
   position: relative;
   height: 100%;
+  @apply w-[128px] h-[176px];
+}
+
+.header {
+  @apply w-[128px] overflow-hidden text-sm whitespace-nowrap mb-1;
+  font-family: 'Roboto';
+  text-overflow: ellipsis;
 }
 
 .movieurl {
@@ -39,7 +51,7 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  @apply flex items-center justify-center ml-10;
+  @apply flex items-center justify-center ml-10 sm:ml-14;
 }
 
 .movieUserRating:hover {
@@ -57,9 +69,13 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  @apply flex items-center justify-center ml-10;
+  @apply flex items-center justify-center ml-10 sm:ml-14;
 }
 
 .movieUserRatingEdit:hover {
   filter: brightness(300%);
+}
+
+.input {
+  @apply text-black bg-gray-500 w-12 h-5;
 }

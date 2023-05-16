@@ -13,11 +13,11 @@ function Footer() {
             </Link>
           </span>
           <span>
-            <p className="text-sm">© {new Date().getFullYear()} FilmOff</p>
+            <p className={styles.pYear}>© {new Date().getFullYear()} FilmOff</p>
           </span>
         </li>
         <li>
-          <p className="text-xs">
+          <p className={styles.pInfo}>
             Контент для приложения берется из IMDB-API.
           </p>
         </li>

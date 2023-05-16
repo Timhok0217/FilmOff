@@ -42,10 +42,11 @@
 }
 
 .listHeader {
-  @apply flex justify-center items-center font-normal text-lg lg:text-xl sm:gap-12 phone:gap-7 lg:gap-16 gap-4;
+  @apply flex justify-center items-center font-medium text-lg lg:text-xl sm:gap-12 phone:gap-7 lg:gap-16 gap-4;
   font-family: 'Roboto';
   list-style-type: none;
   flex-wrap: nowrap;
+  transition: gap 0.3s ease;
 }
 
 .searchContainer {

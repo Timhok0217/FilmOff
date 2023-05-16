@@ -13,10 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply min-h-full relative bg-[#18181B];
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  @apply min-h-full relative bg-[#18181B] flex flex-col;
   margin: 0 auto;
   max-width: 1280px;
   overflow-x: hidden;

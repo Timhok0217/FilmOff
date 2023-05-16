@@ -1,6 +1,7 @@
 .page {
-  @apply mt-8 px-2 phone:text-xl text-lg text-white;
+  @apply mt-10 px-2 phone:text-2xl text-lg text-white;
   font-family: 'Roboto';
+  font-weight: 500;
 }
 
 .choose {
@@ -10,4 +11,9 @@
 .active {
   text-decoration: underline;
   text-decoration-thickness: 7px;
+  text-underline-offset: 10px;
+}
+
+.choosing {
+  @apply flex justify-center;
 }

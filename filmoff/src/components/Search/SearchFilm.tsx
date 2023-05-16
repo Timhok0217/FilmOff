@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import styles from './SearchFilm.module.css'
 
-const SearchFilm: React.FC<any> = ({ film, onFilmChange, onBlur }) => {
+const SearchFilm: React.FC<any> = ({ onFilmChange, onBlur }) => {
   const [query, setQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const [showRecentSearches, setShowRecentSearches] = useState(false)
   const navigate = useNavigate()
   const inputRef = React.createRef<HTMLInputElement>()
+  const location = useLocation()
+  const currentPath = location.pathname
 
   useEffect(() => {
     const allSearchResults = JSON.parse(
@@ -26,8 +28,12 @@ const SearchFilm: React.FC<any> = ({ film, onFilmChange, onBlur }) => {
     if (cleanedQuery && regex.test(cleanedQuery)) {
       try {
         const searchResults = await onFilmChange(cleanedQuery)
+
+        if (currentPath !== '/') {
+          onBlur()
+        }
+
         navigate('/')
-        //setShowRecentSearches(false); //закрывает history search
 
         const allSearchResults = JSON.parse(
           localStorage.getItem('allSearchResults') || '[]'
@@ -115,7 +121,7 @@ const SearchFilm: React.FC<any> = ({ film, onFilmChange, onBlur }) => {
           <div className={styles.close}></div>
         </button>
       </form>
-      {showRecentSearches && (
+      {showRecentSearches && recentSearches.length > 0 && (
         <div className={styles.recentSearches}>
           <div className={styles.boxSearchHistory}>
             <div className={styles.headerHistory}>Предыдущий поиск:</div>

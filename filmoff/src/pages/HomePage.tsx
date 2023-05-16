@@ -24,7 +24,7 @@ const HomePage: React.FC<Props> = ({ film }) => {
           setPopularFilms(savedFilms as any)
         } else {
           const response = await axios.get(
-            'https://imdb-api.com/en/API/MostPopularMovies/k_wekuwc81'
+            'https://imdb-api.com/en/API/MostPopularMovies/k_z3slxcrh'
           )
           const { data } = response
           setPopularFilms(data.items)
@@ -45,6 +45,7 @@ const HomePage: React.FC<Props> = ({ film }) => {
     const fetchSearchResults = async () => {
       try {
         setIsLoading(true) // начало загрузки данных
+        setIsPageLoading(true)
         if (film) {
           let allSearchResults = JSON.parse(
             localStorage.getItem('allSearchResults') || '[]'
@@ -57,8 +58,9 @@ const HomePage: React.FC<Props> = ({ film }) => {
             setSearchResults(cachedResults.results)
             localStorage.setItem('lastSearch', film)
           } else {
+            //2 запроса к api - из-за рейтинга
             const response = await axios.get(
-              `https://imdb-api.com/API/AdvancedSearch/k_084d6kh1?title=${film}&user_rating=,10`
+              `https://imdb-api.com/API/AdvancedSearch/k_43to2og1?title=${film}&user_rating=,10`
             )
             const { data } = response
             setSearchResults(data.results)
@@ -75,13 +77,13 @@ const HomePage: React.FC<Props> = ({ film }) => {
               JSON.stringify(allSearchResults)
             )
             localStorage.setItem('lastSearch', film)
-            console.log('new search')
           }
         }
       } catch (error) {
         console.error(error)
       } finally {
         setIsLoading(false) // окончание загрузки данных
+        setIsPageLoading(false)
       }
     }
 
@@ -115,7 +117,7 @@ const HomePage: React.FC<Props> = ({ film }) => {
       )
 
       if (index !== -1) {
-        //Если запрос уже существует, удаляем его из массива
+        //Если запрос уже существует - удаляем из массива
         allSearchResults.splice(index, 1)
       }
       allSearchResults.push({ title: film, results: searchResults })

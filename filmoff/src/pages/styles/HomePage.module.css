@@ -10,7 +10,7 @@
 }
 
 .header {
-  @apply text-white text-2xl mt-5;
+  @apply text-white text-3xl mt-10;
   font-family: 'Roboto';
   font-weight: 600;
 }
