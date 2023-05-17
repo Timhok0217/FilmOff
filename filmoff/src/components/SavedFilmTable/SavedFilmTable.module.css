@@ -1,5 +1,7 @@
 .moviecard {
-  @apply w-[192px] h-[256px] overflow-hidden relative my-2.5 mx-4;
+  @apply w-[192px] h-[256px] overflow-hidden relative my-2.5 mx-4 hover:scale-105;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
 }
 
 .moviewrapper {

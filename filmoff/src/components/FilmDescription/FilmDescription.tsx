@@ -157,7 +157,7 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
     } else {
       setMovieSave(false)
     }
-  }, [savedFilms, filmInfo, movieSave])
+  }, [savedFilms, filmInfo])
 
   const handleFilmClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     setMovieSave((prev) => !prev)
@@ -188,7 +188,6 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
       if (movieSave && savedFilm) {
         try {
           const filmDoc = doc(db, 'savedFilms', savedFilm.idDoc)
-          console.log(filmDoc)
           await deleteDoc(filmDoc)
           await fetchDBSavedFilms()
         } catch (error) {

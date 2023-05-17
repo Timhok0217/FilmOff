@@ -1,7 +1,9 @@
 .comment {
-  @apply flex flex-col bg-gray-500 rounded-lg p-3 gap-1 w-[100%] min-w-[200px]  max-w-[800px] flex-wrap;
+  @apply flex flex-col bg-[#2A2A2D] rounded-lg p-3 gap-1 w-[100%] min-w-[200px]  max-w-[800px] flex-wrap;
   border: 3px #8524a7 solid;
   font-family: 'Roboto';
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
 }
 
 .header {

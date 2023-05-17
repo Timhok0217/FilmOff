@@ -127,7 +127,7 @@ const CardFilm = ({ cardProps, isLoading }: Props) => {
     } else {
       setMovieSave(false)
     }
-  }, [savedFilms, cardProps, movieSave])
+  }, [savedFilms, cardProps])
 
   const handleFilmClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     setMovieSave((prev) => !prev)
@@ -159,7 +159,6 @@ const CardFilm = ({ cardProps, isLoading }: Props) => {
       if (movieSave && savedFilm) {
         try {
           const filmDoc = doc(db, 'savedFilms', savedFilm.idDoc)
-          console.log(filmDoc)
           await deleteDoc(filmDoc)
           await fetchDBSavedFilms()
         } catch (error) {

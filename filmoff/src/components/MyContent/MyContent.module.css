@@ -23,7 +23,7 @@
 }
 
 .mainWatched {
-  @apply bg-gray-500 p-5  rounded-xl max-w-[1200px] mt-5;
+  @apply bg-[#2A2A2D] p-5  rounded-xl max-w-[1200px] mt-5;
   border: 3px #8524a7 solid;
   font-family: 'Roboto', sans-serif;
 }
@@ -41,7 +41,7 @@
 }
 
 .mainVote {
-  @apply bg-gray-500 p-6  rounded-xl max-w-[1000px] mt-14;
+  @apply bg-[#2A2A2D] p-6  rounded-xl max-w-[1000px] mt-14;
   border: 3px #8524a7 solid;
   font-family: 'Roboto', sans-serif;
 }

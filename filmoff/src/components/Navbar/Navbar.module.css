@@ -1,6 +1,6 @@
 .header {
   @apply flex items-center justify-between text-body_bg h-20 phone:px-10 relative px-5 gap-4 phone:gap-12;
-  background: #8524a7;
+  background: #7a2399;
   width: 100vw;
   max-width: 1280px;
   position: fixed;
@@ -9,6 +9,8 @@
   transform: translateY(0);
   transition: transform 0.5s ease-in-out;
   opacity: 0.9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
 }
 
 .headerHidden {
@@ -28,12 +30,12 @@
 
 .header::before {
   left: 0;
-  background: #8524a7;
+  background: #7a2399;
 }
 
 .header::after {
   right: 0;
-  background: #8524a7;
+  background: #7a2399;
 }
 
 .headerTitle {
@@ -59,7 +61,9 @@
 }
 
 .header li.active {
-  @apply text-black;
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-underline-offset: 8px;
 }
 
 .header li:hover {

@@ -9,10 +9,12 @@
   font-family: 'Roboto', sans-serif;
 }
 .profile {
-  @apply bg-gray-500 phone:px-10 px-5 py-6 w-[100%] rounded-xl max-w-[525px] mt-10;
+  @apply bg-[#2A2A2D] phone:px-10 px-5 py-6 w-[100%] rounded-xl max-w-[525px] mt-10;
   border: 3px #8524a7 solid;
   font-family: 'Roboto', sans-serif;
   transition: padding 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
 }
 
 .header {
@@ -98,9 +100,11 @@
 }
 
 .mainWatched {
-  @apply bg-gray-500 p-5  rounded-xl max-w-[1200px] mt-14;
+  @apply bg-[#2A2A2D] p-5  rounded-xl max-w-[1200px] mt-14;
   border: 3px #8524a7 solid;
   font-family: 'Roboto', sans-serif;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
 }
 
 .headerBlock {
