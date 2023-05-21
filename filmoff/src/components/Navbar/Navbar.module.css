@@ -1,11 +1,13 @@
 .header {
-  @apply flex items-center justify-between text-body_bg h-20 phone:px-10 relative px-5 gap-4 phone:gap-12;
-  background: #7a2399;
+  @apply flex items-center justify-between text-white h-20 sm:px-10 relative phone:px-5 pl-3 pr-5 gap-4 phone:gap-6 sm:gap-12;
+  background: #5c469c;
   width: 100vw;
   max-width: 1280px;
   position: fixed;
   z-index: 10;
   height: 80px;
+  transition: gap 0.3s ease;
+  transition: padding 0.3s ease;
   transform: translateY(0);
   transition: transform 0.5s ease-in-out;
   opacity: 0.9;
@@ -30,21 +32,21 @@
 
 .header::before {
   left: 0;
-  background: #7a2399;
+  background: #5c469c;
 }
 
 .header::after {
   right: 0;
-  background: #7a2399;
+  background: #5c469c;
 }
 
 .headerTitle {
-  @apply font-semibold text-2xl sm:text-3xl leading-3 ml-2  text-white;
+  @apply font-semibold text-xl phone:text-2xl sm:text-3xl leading-3 phone:ml-2  text-white;
   font-family: 'Roboto';
 }
 
 .listHeader {
-  @apply flex justify-center items-center font-medium text-lg lg:text-xl sm:gap-12 phone:gap-7 lg:gap-16 gap-4;
+  @apply flex justify-center items-center font-medium text-base sm:text-lg lg:text-xl md:gap-12 sm:gap-7 lg:gap-16 phone:gap-4 gap-2.5;
   font-family: 'Roboto';
   list-style-type: none;
   flex-wrap: nowrap;
@@ -72,7 +74,7 @@
 
 .profileIcon {
   background-image: url('../../../public/img/profileIcon.svg');
-  @apply w-8 h-8 bg-auto bg-no-repeat bg-cover;
+  @apply sm:w-8 sm:h-8 phone:w-7 phone:h-7 w-6 h-6 bg-auto bg-no-repeat bg-cover;
 }
 .profileIcon:hover {
   background-image: url('../../../public/img/profileIconHover.svg');
@@ -80,7 +82,7 @@
 
 .search {
   background-image: url('../../../public/img/search.svg');
-  @apply w-8 h-8 bg-auto bg-no-repeat bg-cover;
+  @apply sm:w-8 sm:h-8 phone:w-7 phone:h-7 w-6 h-6  bg-auto bg-no-repeat bg-cover;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;

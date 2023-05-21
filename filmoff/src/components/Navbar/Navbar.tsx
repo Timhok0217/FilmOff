@@ -84,6 +84,9 @@ const Navbar: React.FC<NavbarProps> = ({ film, onFilmChange }) => {
             <CustomLink to="/" className="HomePage">
               Главная
             </CustomLink>
+            <CustomLink to="/inRating" className="inRatingPage">
+              Рейтинги
+            </CustomLink>
             <CustomLink to="/myPage" className="MyPage">
               Мое
             </CustomLink>

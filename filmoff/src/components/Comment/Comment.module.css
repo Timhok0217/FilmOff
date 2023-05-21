@@ -1,9 +1,10 @@
 .comment {
-  @apply flex flex-col bg-[#2A2A2D] rounded-lg p-3 gap-1 w-[100%] min-w-[200px]  max-w-[800px] flex-wrap;
-  border: 3px #8524a7 solid;
+  @apply flex flex-col  bg-[#2A2A2D] rounded-lg px-4 phone:px-6 py-3 lg:px-4  gap-1 w-[100%] min-w-[200px]   max-w-[1200px] flex-wrap phone:text-lg text-sm h-full;
+  border: 3px #5c469c solid;
   font-family: 'Roboto';
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.6);
   border-radius: 12px;
+  transition: gap 0.3s ease;
 }
 
 .header {
@@ -11,14 +12,22 @@
 }
 
 .time {
-  @apply text-sm;
+  @apply phone:text-sm text-xs;
+}
+
+.nameTextBox {
+  @apply flex flex-col items-start gap-2;
 }
 
 .user {
-  @apply text-lg mb-2 hover:scale-105;
+  @apply phone:text-xl text-xl mb-2 hover:scale-105;
   text-decoration: underline;
   text-decoration-thickness: 3px;
   text-underline-offset: 5px;
+}
+
+.text {
+  @apply text-left  phone:text-lg;
 }
 
 .button {

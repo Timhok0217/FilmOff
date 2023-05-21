@@ -29,10 +29,10 @@
 
 .footer::before {
   left: 0;
-  background: #8524a7;
+  background: #5c469c;
 }
 
 .footer::after {
   right: 0;
-  background: #8524a7;
+  background: #5c469c;
 }

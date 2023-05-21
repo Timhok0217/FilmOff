@@ -8,6 +8,7 @@ import ProfilePage from './pages/ProfilePage'
 import AboutPage from './pages/AboutPage'
 import NotFoundPage from './pages/NotFoundPage'
 import CardFilmPage from './pages/CardFilmPage'
+import InRatingPage from './pages/InRatingPage'
 
 import Footer from './components/Footer/Footer'
 import { useState } from 'react'
@@ -73,6 +74,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/cardFilm/:id" element={<CardFilmPage />} />
+        <Route path="/inRating" element={<InRatingPage />} />
       </Routes>
       <div className={styles.footer}>
         <Footer />

@@ -1,5 +1,5 @@
 .page {
-  @apply mt-10 px-2 text-3xl  text-white;
+  @apply mt-10 px-2 text-3xl  text-white font-medium;
   font-family: 'Roboto';
 }
 

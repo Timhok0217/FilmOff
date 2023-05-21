@@ -1,6 +1,10 @@
 .page {
-  @apply flex items-center gap-6 sm:gap-12;
+  @apply flex items-center gap-1 sm:gap-6 lg:gap-12;
   transition: gap 0.3s ease;
+}
+
+.movie {
+  @apply flex items-center gap-5 lg:gap-12 md:flex-row flex-col;
 }
 
 .moviecard {
@@ -42,38 +46,30 @@
   display: none;
 }
 
+.star {
+  background-image: url('../../../public/img/purpleStar.svg');
+  background-size: 100%;
+  background-size: cover;
+  cursor: pointer;
+  @apply phone:w-10 phone:h-10 md_ph:w-8 md_ph:h-8 w-7 h-7;
+}
+
+.filled {
+  background-image: url('../../../public/img/yellowStar.svg');
+}
+
 .movieUserRating {
-  background-image: url('../../../public/img/purpleStar.svg');
   cursor: pointer;
   background-size: 100%;
-  height: 56px;
-  width: 56px;
-  display: inline-block;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  @apply flex items-center justify-center ml-10 sm:ml-14;
+  height: 46px;
+  @apply flex items-center justify-center phone:text-base md_ph:text-sm text-[13px] text-center sm:w-[480px] phone:w-[400px] md_ph:w-[320px] w-[280px] sm:gap-2;
+  transition: gap 0.3s ease;
 }
 
-.movieUserRating:hover {
-  filter: brightness(300%);
+.val {
+  @apply flex justify-center items-center phone:mt-2.5 md_ph:mt-2 mt-0.5;
 }
 
-.movieUserRatingEdit {
-  background-image: url('../../../public/img/purpleStar.svg');
-  cursor: pointer;
-  background-size: 100%;
-  height: 72px;
-  width: 72px;
-  display: inline-block;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  @apply flex items-center justify-center ml-10 sm:ml-14;
-}
-
-.input {
-  @apply text-white bg-[#2A2A2D] w-12 h-5;
+.hovered {
+  background-image: url('../../../public/img/yellowStar.svg');
 }

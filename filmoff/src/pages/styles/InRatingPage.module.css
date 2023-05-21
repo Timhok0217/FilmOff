@@ -1,0 +1,49 @@
+.page {
+  @apply mt-10 sm:px-2 phone:px-1 px-0.5 phone:text-2xl text-lg text-white;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+
+.body {
+  @apply phone:mt-10 mt-8 px-2 phone:text-2xl text-lg text-white;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+
+.choose {
+  @apply flex justify-center gap-10;
+}
+
+.active {
+  text-decoration: underline;
+  text-decoration-thickness: 7px;
+  text-underline-offset: 10px;
+}
+
+.choosing {
+  @apply flex justify-center;
+}
+
+.header {
+  @apply text-white phone:text-3xl text-2xl mt-10;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+
+.mainFilms {
+  @apply bg-[#2A2A2D] sm:p-6 py-6 phone:px-3 px-1 rounded-xl max-w-[800px] phone:mt-14 mt-10 flex flex-col gap-10;
+  border: 3px #5c469c solid;
+  font-family: 'Roboto', sans-serif;
+  transition: padding 0.3s ease;
+}
+
+.loader {
+  @apply flex justify-center items-center;
+}
+
+.loaderimg {
+  @apply w-[200px] h-[200px];
+
+  background-size: cover;
+  background-image: url('../../../public/img/SpinnerF5.gif');
+}

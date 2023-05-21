@@ -146,7 +146,6 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
         (doc) => ({ id: doc.id, ...doc.data() } as any)
       )
       setComments(data)
-      setIsLoading(false)
     })
 
     const votesQuery = query(voteFilmsRef, where('userId', '==', userId))
@@ -155,14 +154,12 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
         (doc) => ({ id: doc.id, ...doc.data() } as VoteFilm)
       )
       setVotes(data)
-      setIsLoading(false)
     })
 
     return () => {
       savedFilmsUnsubscribe()
       commentsUnsubscribe()
       votesUnsubscribe()
-      setIsLoading(true)
     }
   }, [isYourProfile, diffUser, users, isShowFilms])
 
@@ -183,13 +180,10 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
     }
 
     try {
-      setIsLoading(true)
       await updateUserInCollection(ref, event.target.checked)
-      setIsShowFilms(event.target.checked)
     } catch (error) {
       console.error('Error upd user:', error)
     } finally {
-      setIsLoading(false)
     }
   }
 
@@ -214,22 +208,26 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
                     </div>
                   )}
                   <div className={styles.infoLine}>
-                    <div className={styles.infoCheck}>
-                      <div className={styles.nameInfo}>Сохраненные</div>
-                      {diffUser ? null : (
-                        <div className={styles.checkboxContainer}>
-                          <input
-                            type="checkbox"
-                            checked={isShowFilms}
-                            onChange={handleCheckboxChange}
-                            className={styles.checkbox}
-                          />
-                        </div>
-                      )}
-                    </div>
-
+                    <div className={styles.nameInfo}>Сохраненное</div>
                     <div>{isLoading ? '' : savedFilms.length}</div>
                   </div>
+
+                  {diffUser ? null : (
+                    <div className={styles.infoLine}>
+                      <div className={styles.nameInfo}>
+                        Показывать сохраненное другим
+                      </div>
+
+                      <div className={styles.checkboxContainer}>
+                        <input
+                          type="checkbox"
+                          checked={isShowFilms}
+                          onChange={handleCheckboxChange}
+                          className={styles.checkbox}
+                        />
+                      </div>
+                    </div>
+                  )}
                   <div className={styles.infoLine}>
                     <div className={styles.nameInfo}>Оценки</div>
                     <div>{isLoading ? '' : votes.length}</div>

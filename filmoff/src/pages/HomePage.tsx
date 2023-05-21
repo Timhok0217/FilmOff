@@ -24,7 +24,7 @@ const HomePage: React.FC<Props> = ({ film }) => {
           setPopularFilms(savedFilms as any)
         } else {
           const response = await axios.get(
-            'https://imdb-api.com/en/API/MostPopularMovies/k_z3slxcrh'
+            'https://imdb-api.com/en/API/MostPopularMovies/k_084d6kh1'
           )
           const { data } = response
           setPopularFilms(data.items)
@@ -60,7 +60,7 @@ const HomePage: React.FC<Props> = ({ film }) => {
           } else {
             //2 запроса к api - из-за рейтинга
             const response = await axios.get(
-              `https://imdb-api.com/API/AdvancedSearch/k_43to2og1?title=${film}&user_rating=,10`
+              `https://imdb-api.com/API/AdvancedSearch/k_43to2og1?title=${film}`
             )
             const { data } = response
             setSearchResults(data.results)

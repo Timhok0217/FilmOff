@@ -16,12 +16,15 @@ const Comment = ({ text, user, time, userId, onDelete }: any) => {
           </div>
         )}
       </div>
+      
+      <div className={styles.nameTextBox}>
+        <Link to={`/profile/${userId}`}>
+          <div className={styles.user}>{user}</div>
+        </Link>
 
-      <Link to={`/profile/${userId}`}>
-        <div className={styles.user}>{user}</div>
-      </Link>
-
-      <div>{text}</div>
+        <div className={styles.text}>{text}</div>
+      </div>
+      
     </div>
   )
 }

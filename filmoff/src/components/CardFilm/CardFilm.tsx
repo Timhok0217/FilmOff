@@ -184,10 +184,13 @@ const CardFilm = ({ cardProps, isLoading }: Props) => {
             />
           )}
           <div className={styles.moviedescription}>
-            {cardProps?.imDbRating && (
+            {
               <div className={styles.movierating}>
-                <div className={styles.movieImdbRating}>
-                  {cardProps.imDbRating}
+                <div className={styles.imdb}>
+                  <div className={styles.imdbText}>IMDB</div>
+                  <div className={styles.movieImdbRating}>
+                    {cardProps?.imDbRating || null}
+                  </div>
                 </div>
 
                 <div className={styles.boxUser}>
@@ -200,7 +203,7 @@ const CardFilm = ({ cardProps, isLoading }: Props) => {
                   </div>
                 </div>
               </div>
-            )}
+            }
             <h3 className={styles.movietitle}>{cardProps?.title}</h3>
             <footer className={styles.moviefooter}>
               <div className={styles.moviecrew}>

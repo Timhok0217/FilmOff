@@ -69,9 +69,7 @@ const SearchFilm: React.FC<any> = ({ onFilmChange, onBlur }) => {
   }
 
   const handleReset = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
     setQuery('')
-    inputRef.current?.focus()
   }
 
   const handleRecentSearchClick = (recentSearch: any, event: any) => {
@@ -80,11 +78,6 @@ const SearchFilm: React.FC<any> = ({ onFilmChange, onBlur }) => {
     onFilmChange(recentSearch.title)
     navigate('/')
     handleBlur()
-  }
-
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-    event.stopPropagation()
   }
 
   const handleSearchResultClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -112,12 +105,7 @@ const SearchFilm: React.FC<any> = ({ onFilmChange, onBlur }) => {
           ref={inputRef}
           onFocus={() => setShowRecentSearches(true)}
         />
-        <button
-          type="reset"
-          className={styles.button}
-          onClick={handleReset}
-          onMouseDown={handleButtonClick}
-        >
+        <button type="reset" className={styles.button} onClick={handleReset}>
           <div className={styles.close}></div>
         </button>
       </form>

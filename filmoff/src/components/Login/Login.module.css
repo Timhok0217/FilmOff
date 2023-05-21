@@ -1,6 +1,6 @@
 .form {
   @apply bg-[#2A2A2D] p-6 w-[100%] rounded-xl max-w-[400px] mt-10 text-xl;
-  border: 3px #8524a7 solid;
+  border: 3px #5c469c solid;
   font-family: 'Roboto', sans-serif;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
   border-radius: 12px;
@@ -20,7 +20,7 @@
 
 .input {
   @apply w-[100%] rounded-lg h-12 px-5 py-2 text-black;
-  border: 3px #8524a7 solid;
+  border: 3px #5c469c solid;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
   border-radius: 12px;
 }
@@ -32,7 +32,7 @@
 .button {
   @apply w-[100%] my-2 mt-4 rounded-2xl border-0 text-white cursor-pointer h-12 text-lg hover:scale-105;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+  background: #5c469c;
 }
 
 .button:focus {

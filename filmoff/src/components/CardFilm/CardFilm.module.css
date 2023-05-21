@@ -5,7 +5,7 @@
 }
 
 .moviewrapper {
-  background-color: rgb(82, 82, 91);
+  background-color: #52525b;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
@@ -24,14 +24,6 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
-}
-
-.movienoposter .moviedescription {
-  opacity: 1;
-}
-
-.movienoposter .movieposter {
-  display: none;
 }
 
 .moviedescription {
@@ -64,7 +56,7 @@
 }
 
 .movierating {
-  @apply flex items-center justify-between;
+  @apply flex items-end justify-between mb-1;
   color: #fff;
   background-size: cover;
   background-repeat: no-repeat;
@@ -72,6 +64,14 @@
   line-height: normal;
   text-align: center;
   font-size: 14px;
+}
+
+.imdb {
+  @apply flex flex-col;
+}
+
+.imdbText {
+  @apply text-base font-medium;
 }
 
 .movieImdbRating {
@@ -166,5 +166,5 @@
   @apply w-[200px] h-[200px];
 
   background-size: cover;
-  background-image: url('../../../public/img/Spinner.svg');
+  background-image: url('../../../public/img/Spinner.gif');
 }

@@ -79,7 +79,6 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
     userId: '',
     idDoc: '',
   })
-  const [isEditing, setIsEditing] = useState(false)
 
   const fetchDBSavedFilms = async () => {
     const userId = auth.currentUser?.uid
@@ -128,15 +127,18 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
           ...doc.data(),
         } as any)
     )
-    const filterComments = [...commentsData].sort(
-      (a, b) => Date.parse(a) - Date.parse(b)
-    )
+    const filterComments = [...commentsData].sort((a, b) => {
+      return b.time.localeCompare(a.time, 'ru')
+    })
     setComments(filterComments)
   }
 
   useEffect(() => {
     fetchDBVoteFilms()
-  }, [auth.currentUser?.uid, filmInfo?.id, setVotes])
+    if (savedFilms.length > 0) {
+      setDataLoaded(false)
+    }
+  }, [auth.currentUser?.uid, filmInfo?.id])
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -145,8 +147,11 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
         fetchDBVoteFilms()
       }
     })
-    setDataLoaded(false)
     getComments()
+
+    if (savedFilms.length > 0) {
+      setDataLoaded(false)
+    }
     return unsubscribe
   }, [filmInfo])
 
@@ -156,6 +161,9 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
       setMovieSave(true)
     } else {
       setMovieSave(false)
+    }
+    if (savedFilms.length > 0) {
+      setDataLoaded(false)
     }
   }, [savedFilms, filmInfo])
 
@@ -240,24 +248,39 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
     fetchDBVoteFilms()
   }
 
-  const handleVoteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVotes({ ...votes, vote: e.target.value })
+  const [isUpdating, setIsUpdating] = useState(false)
+  const [hoveredStars, setHoveredStars] = useState(0)
+  const [zahod, setZahod] = useState(true)
+
+  const handleStarHover = (value: number) => {
+    setZahod(false)
+    setHoveredStars(value)
   }
 
-  const handleBlur = async () => {
-    setIsEditing(false)
-    await updateVotesInDB()
+  const handleMouseLeave = () => {
+    if (votes.vote) {
+      setHoveredStars(Number(votes.vote))
+    } else {
+      setHoveredStars(0)
+    }
+    setZahod(true)
   }
 
-  const handleVoteSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsEditing(false)
-    await updateVotesInDB()
+  const handleVoteSubmit = async (value: number) => {
+    setVotes((prevVotes) => {
+      const newVotes = { ...prevVotes, vote: `${value}` }
+      return newVotes
+    })
+    setIsUpdating(true)
   }
 
-  const handleEditClick = () => {
-    setIsEditing(true)
-  }
+  useEffect(() => {
+    if (isUpdating) {
+      updateVotesInDB().then(() => {
+        setIsUpdating(false) // Сбрасываем лоадер
+      })
+    }
+  }, [isUpdating])
 
   const handleComment = () => {
     if (!auth.currentUser) {
@@ -275,6 +298,7 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
       text: trimmedComment,
       userId: auth.currentUser?.uid,
       nickname: auth.currentUser?.displayName,
+      filmTitle: filmInfo.title,
       time: new Date().toLocaleString(),
     })
     setCommentDraft('')
@@ -326,30 +350,27 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
                 <div className={styles.func}>
                   <div>Оценить</div>
                   <div
-                    className={
-                      isEditing
-                        ? styles.movieUserRatingEdit
-                        : styles.movieUserRating
-                    }
-                    onClick={handleEditClick}
+                    className={styles.movieUserRating}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    {isEditing ? (
-                      <form onSubmit={handleVoteSubmit}>
-                        <input
-                          type="number"
-                          value={votes.vote}
-                          onChange={handleVoteChange}
-                          onBlur={handleBlur}
-                          min={1}
-                          max={10}
-                          step={0.5}
-                          autoFocus
-                          className={styles.inputstyles}
-                        />
-                      </form>
-                    ) : (
-                      votes.vote
-                    )}
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+                      <div
+                        key={value}
+                        onMouseEnter={() => handleStarHover(value)}
+                        onClick={() => handleVoteSubmit(value)}
+                        className={`${styles.star} ${
+                          votes.vote && Number(votes.vote) >= value && zahod
+                            ? styles.filled
+                            : ''
+                        } ${
+                          hoveredStars > 0 && hoveredStars >= value
+                            ? styles.hovered
+                            : ''
+                        }`}
+                      >
+                        <div className={styles.val}>{value}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -415,21 +436,6 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
 
           <div className={styles.comment}>
             <div className={styles.headerComment}>Комментарии</div>
-            <div className={styles.tableComments}>
-              {comments &&
-                comments.map((item: any, index: number) => (
-                  <div key={index}>
-                    <Comment
-                      text={item.text}
-                      user={item.nickname}
-                      time={item?.time}
-                      userId={item.userId}
-                      onDelete={() => handleDelete(item.id)}
-                    />
-                  </div>
-                ))}
-            </div>
-
             <div className={styles.bodyComment}>
               <div className={styles.buttonsGaps}>
                 <div className={styles.buttonWrite} onClick={handleComment}>
@@ -453,6 +459,20 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
                   onChange={(e) => setCommentDraft(e.target.value)}
                 />
               )}
+            </div>
+            <div className={styles.tableComments}>
+              {comments &&
+                comments.map((item: any, index: number) => (
+                  <div key={index}>
+                    <Comment
+                      text={item.text}
+                      user={item.nickname}
+                      time={item?.time}
+                      userId={item.userId}
+                      onDelete={() => handleDelete(item.id)}
+                    />
+                  </div>
+                ))}
             </div>
           </div>
         </>

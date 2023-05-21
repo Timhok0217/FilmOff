@@ -1,0 +1,147 @@
+.page {
+  @apply flex items-center gap-3 sm:gap-6 lg:gap-12;
+  transition: gap 0.3s ease;
+}
+
+.table {
+  @apply flex items-center justify-start gap-0.5 phone:gap-1 sm:gap-4 md:gap-10 lg:gap-[52px] md:flex-row  w-full;
+  transition: gap 0.3s ease;
+}
+
+.index {
+  @apply phone:text-2xl phone:w-[27px] text-xl w-[24px];
+}
+
+.gridIt {
+  @apply grid grid-cols-2 phone:gap-1 sm:gap-2 w-full;
+  grid-template-columns: minmax(0, 300px) 1fr;
+
+  @media (max-width: 800px) {
+    grid-template-columns: minmax(0, 250px) 1fr;
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: minmax(0, 205px) 1fr;
+  }
+  @media (max-width: 555px) {
+    grid-template-columns: minmax(0, 170px) 1fr;
+  }
+  @media (max-width: 519px) {
+    grid-template-columns: minmax(0, 145px) 1fr;
+  }
+  @media (max-width: 479px) {
+    grid-template-columns: minmax(0, 135px) 1fr;
+  }
+  transition: grid-template-columns 0.3s ease;
+}
+
+.moviecard {
+  @apply overflow-hidden relative hover:scale-105 hover:brightness-125 phone:p-2 p-1 sm:w-[200px] phone:w-[150px] w-[130px];
+}
+
+.moviewrapper {
+  background-color: rgb(82, 82, 91);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  height: 100%;
+  @apply sm:w-[180px] sm:h-[248px] phone:w-[128px] phone:h-[176px] md_ph:w-[110px] md_ph:h-[152px] w-[100px] h-[138px];
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+}
+
+.movieurl {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.movieposter {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.movienoposter .movieposter {
+  display: none;
+}
+
+.info {
+  @apply flex flex-col justify-around items-start;
+}
+
+.title {
+  @apply sm:text-2xl phone:text-xl md_ph:text-lg text-base text-left;
+}
+
+.boxInfo {
+  @apply flex sm:gap-12 phone:gap-3.5 gap-3 md_ph:text-[13px] text-xs phone:text-base sm:text-lg sm:mb-10 mb-4;
+}
+
+.infoLine {
+  @apply flex flex-col items-center phone:justify-normal justify-end gap-2 lg:text-lg md:text-base sm:text-sm text-[13px];
+}
+
+.count {
+  @apply flex justify-center items-center h-full text-2xl;
+}
+
+.save:hover {
+  filter: brightness(300%);
+  @apply scale-105;
+}
+
+.unsave:hover {
+  filter: brightness(300%);
+  @apply scale-105;
+}
+
+.rat {
+  background-image: url('../../../public/img/checkBox.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+
+  @apply sm:w-[52px] sm:h-[52px] phone:w-[46px] phone:h-[46px] w-[42px] h-[42px];
+}
+
+.save {
+  background-image: url('../../../public/img/clickToSave.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  background-size: 100%;
+  @apply sm:w-[52px] sm:h-[52px] phone:w-[46px] phone:h-[46px] w-[42px] h-[42px];
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.unsave {
+  background-image: url('../../../public/img/clickToUnsave.svg');
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  @apply sm:w-[52px] sm:h-[52px] phone:w-[46px] phone:h-[46px] w-[42px] h-[42px];
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.saveMounted {
+  opacity: 1;
+}
+
+.loader {
+  @apply flex justify-center items-center;
+}
+
+.loaderimg {
+  @apply w-[60px] h-[50px];
+
+  background-size: cover;
+  background-image: url('../../../public/img/SpinnerRat.gif');
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import styles from './MyContent.module.css'
 
 import SavedFilmTable from '../SavedFilmTable/SavedFilmTable'
@@ -44,24 +44,6 @@ const MyContent = () => {
     setSortOrder((prev) => !prev)
   }
 
-  const filterVotes = () => {
-    let sortedFilms
-    if (sortOrder) {
-      sortedFilms = [...voteFilms].sort(
-        (a, b) => Number(a.vote) - Number(b.vote)
-      )
-    } else {
-      sortedFilms = [...voteFilms].sort(
-        (a, b) => Number(b.vote) - Number(a.vote)
-      )
-    }
-    setVoteFilms(sortedFilms)
-  }
-
-  useEffect(() => {
-    filterVotes()
-  }, [sortOrder])
-
   useEffect(() => {
     if (savedFilms.length > 0 || voteFilms.length > 0) {
       setDataLoaded(false)
@@ -86,12 +68,7 @@ const MyContent = () => {
         const votes = snapshot.docs.map(
           (doc) => ({ idDoc: doc.id, ...doc.data() } as VoteFilm)
         )
-        //Сортируем список по возрастанию
-        const sortedFilms = [...votes].sort(
-          (a, b) => Number(a.vote) - Number(b.vote)
-        )
-
-        setVoteFilms(sortedFilms)
+        setVoteFilms(votes)
         setDataLoaded(false)
       }
     )
@@ -101,6 +78,14 @@ const MyContent = () => {
       unsubscribeVoteFilms()
     }
   }, [])
+
+  const sortedVoteFilms = useMemo(() => {
+    if (sortOrder) {
+      return [...voteFilms].sort((a, b) => Number(a.vote) - Number(b.vote))
+    } else {
+      return [...voteFilms].sort((a, b) => Number(b.vote) - Number(a.vote))
+    }
+  }, [voteFilms, sortOrder])
 
   return (
     <>
@@ -144,7 +129,7 @@ const MyContent = () => {
           </>
         )}
 
-        {voteFilms.length > 0 && (
+        {sortedVoteFilms.length > 0 && (
           <div className={styles.mainVote}>
             <div className={styles.headerBlock}>
               Оценки
@@ -155,7 +140,7 @@ const MyContent = () => {
             </div>
             <div className={styles.bodyVote}>
               <div className={styles.tableVote}>
-                {voteFilms.map(
+                {sortedVoteFilms.map(
                   (
                     item: { id: React.Key | null | undefined },
                     index: number

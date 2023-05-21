@@ -28,19 +28,23 @@ const SavedVoteTable = ({ votes, index }: any) => {
   const voteFilmsRef = collection(db, 'voteFilms')
 
   const [voteFilms, setVoteFilms] = useState<VoteFilm[]>([])
-  const [vote, setVote] = useState(votes.vote)
-  const [isEditing, setIsEditing] = useState(false)
-  const [prevVote, setPrevVote] = useState(votes.vote)
+  const [isUpdating, setIsUpdating] = useState(false)
+  const [hoveredStars, setHoveredStars] = useState(0)
+  const [zahod, setZahod] = useState(true)
 
   const fetchDBVoteFilms = async () => {
     const userId = auth.currentUser?.uid
     if (userId) {
-      const q = query(voteFilmsRef, where('userId', '==', userId))
+      const q = query(
+        voteFilmsRef,
+        where('userId', '==', userId),
+        where('id', '==', votes.id)
+      )
       const queryDateDB = await getDocs(q)
-      const votes = queryDateDB.docs.map(
+      const vot = queryDateDB.docs.map(
         (doc) => ({ idDoc: doc.id, ...doc.data() } as VoteFilm)
       )
-      setVoteFilms(votes)
+      setVoteFilms(vot)
     }
   }
 
@@ -54,81 +58,91 @@ const SavedVoteTable = ({ votes, index }: any) => {
     return unsubscribe
   }, [])
 
-  const handleVoteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVote(e.target.value)
+  const handleStarHover = (value: number) => {
+    setZahod(false)
+    setHoveredStars(value)
   }
 
-  const handleBlur = () => {
-    setIsEditing(false)
-    if (vote !== prevVote) {
-      setPrevVote(vote)
-      const voteDocRef = doc(db, 'voteFilms', votes.idDoc)
-      try {
-        updateDoc(voteDocRef, { vote: vote })
-      } catch (error) {
-        console.error('Error updt BD: ', error)
+  const handleMouseLeave = () => {
+    if (votes.vote) {
+      setHoveredStars(Number(votes.vote))
+    } else {
+      setHoveredStars(0)
+    }
+    setZahod(true)
+  }
+
+  const handleVoteSubmit = async (value: number) => {
+    const userId = auth.currentUser?.uid
+    if (userId) {
+      const voteDoc = voteFilms.find((voteFilm) => voteFilm.userId === userId)
+      if (voteDoc) {
+        const updatedVoteFilms = voteFilms.map((voteFilm) =>
+          voteFilm.userId === userId
+            ? { ...voteFilm, vote: `${value}` }
+            : voteFilm
+        )
+        setVoteFilms(updatedVoteFilms)
+        setIsUpdating(true)
       }
     }
   }
 
-  const handleVoteSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsEditing(false)
-    setPrevVote(vote)
-    if (vote !== prevVote) {
-      const voteDocRef = doc(db, 'voteFilms', votes.idDoc)
-      try {
-        await updateDoc(voteDocRef, { vote: vote })
-      } catch (error) {
-        console.error('Error updt BD: ', error)
+  const updateVotesInDB = async () => {
+    const userId = auth.currentUser?.uid
+    if (userId) {
+      const voteDoc = voteFilms.find((voteFilm) => voteFilm.userId === userId)
+      if (voteDoc) {
+        const voteDocRef = doc(db, 'voteFilms', voteDoc.idDoc)
+        await updateDoc(voteDocRef, { vote: voteDoc.vote })
       }
     }
   }
 
-  const handleEditClick = () => {
-    setIsEditing(true)
-  }
+  useEffect(() => {
+    if (isUpdating) {
+      updateVotesInDB().then(() => {
+        setIsUpdating(false)
+      })
+    }
+  }, [isUpdating])
 
   return (
     <div className={styles.page}>
-      <div>{index + 1}</div>
+      <div className="text-2xl w-[27px]">{index + 1}</div>
 
-      <div className={styles.moviecard}>
-        <div className={styles.header}>{votes.title}</div>
-        <div className={styles.moviewrapper}>
-          <Link to={`/cardFilm/${votes.id}`} className={styles.movieurl}>
-            <img
-              className={styles.movieposter}
-              src={`${votes.image}`}
-              alt="poster"
-            />
-          </Link>
+      <div className={styles.movie}>
+        <div className={styles.moviecard}>
+          <div className={styles.header}>{votes.title}</div>
+          <div className={styles.moviewrapper}>
+            <Link to={`/cardFilm/${votes.id}`} className={styles.movieurl}>
+              <img
+                className={styles.movieposter}
+                src={`${votes.image}`}
+                alt="poster"
+              />
+            </Link>
+          </div>
         </div>
-      </div>
 
-      <div
-        className={
-          isEditing ? styles.movieUserRatingEdit : styles.movieUserRating
-        }
-        onClick={handleEditClick}
-      >
-        {isEditing ? (
-          <form onSubmit={handleVoteSubmit}>
-            <input
-              type="number"
-              value={vote}
-              onChange={handleVoteChange}
-              onBlur={handleBlur}
-              min={1}
-              max={10}
-              step={0.5}
-              autoFocus
-              className={styles.input}
-            />
-          </form>
-        ) : (
-          vote
-        )}
+        <div className={styles.movieUserRating} onMouseLeave={handleMouseLeave}>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+            <div
+              key={value}
+              onMouseEnter={() => handleStarHover(value)}
+              onClick={() => handleVoteSubmit(value)}
+              className={`${styles.star} ${
+                votes.vote && Number(votes.vote) >= value && zahod
+                  ? styles.filled
+                  : ''
+              } ${
+                hoveredStars > 0 && hoveredStars >= value ? styles.hovered : ''
+              }`}
+            >
+              <div className={styles.val}>{value}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

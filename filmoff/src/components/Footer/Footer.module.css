@@ -1,6 +1,6 @@
 .footerLg {
   @apply w-full bottom-0 absolute h-[72px] text-white p-3;
-  background: #8524a7;
+  background: #5c469c;
 }
 
 .list_footerLg {

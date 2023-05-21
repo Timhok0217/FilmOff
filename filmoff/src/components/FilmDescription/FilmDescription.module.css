@@ -1,5 +1,5 @@
 .page {
-  @apply mt-10 px-2 phone:text-base text-sm;
+  @apply mt-10 px-2 phone:text-lg text-sm;
   font-family: 'Roboto';
   font-weight: 500;
 }
@@ -22,7 +22,7 @@
 .img {
   @apply phone:w-64 w-52 rounded-lg;
   min-width: 150px;
-  border: 3.5px #8524a7 solid;
+  border: 3.5px #5c469c solid;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
@@ -31,16 +31,16 @@
 }
 
 .name {
-  @apply phone:text-2xl  text-xl mb-3;
+  @apply phone:text-3xl  text-2xl mb-3;
 }
 
 .header {
-  @apply phone:text-xl text-lg;
+  @apply phone:text-2xl text-xl;
 }
 
 .info {
   @apply flex flex-col justify-start phone:gap-5 gap-3 bg-[#2A2A2D] rounded-lg px-5 py-2.5 sm:px-10 sm:py-5;
-  border: 3px #8524a7 solid;
+  border: 3px #5c469c solid;
   transition: gap 0.3s ease;
   transition: padding 0.3s ease;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -54,7 +54,7 @@
 
 .nameInfo {
   @apply flex text-gray-400;
-  min-width: 125px;
+  min-width: 142px;
 }
 
 .valInfo {
@@ -63,7 +63,8 @@
 }
 
 .boxUser {
-  @apply flex justify-center items-center gap-20 mb-2;
+  @apply flex justify-center items-center md:gap-20 sm:gap-10 gap-6 mb-2 sm:flex-row flex-col;
+  transition: gap 0.3s ease;
 }
 
 .save:hover {
@@ -95,44 +96,36 @@
   width: 46px;
 }
 
-.movieUserRating {
+.func {
+  @apply flex flex-col items-center;
+}
+
+.star {
   background-image: url('../../../public/img/purpleStar.svg');
+  background-size: 100%;
+  background-size: cover;
+  cursor: pointer;
+  @apply phone:w-10 phone:h-10 md_ph:w-8 md_ph:h-8 w-7 h-7;
+}
+
+.filled {
+  background-image: url('../../../public/img/yellowStar.svg');
+}
+
+.movieUserRating {
   cursor: pointer;
   background-size: 100%;
   height: 46px;
-  width: 46px;
-  display: inline-block;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  @apply flex items-center justify-center;
+  @apply flex items-center justify-center phone:text-base md_ph:text-sm text-[13px] text-center md:w-[480px] phone:w-[400px] md_ph:w-[320px] w-[280px] md:gap-2;
+  transition: gap 0.3s ease;
 }
 
-.movieUserRating:hover {
-  filter: brightness(300%);
+.val {
+  @apply flex justify-center items-center phone:mt-2.5 md_ph:mt-2 mt-1.5;
 }
 
-.movieUserRatingEdit {
-  background-image: url('../../../public/img/purpleStar.svg');
-  cursor: pointer;
-  background-size: 100%;
-  height: 72px;
-  width: 72px;
-  display: inline-block;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  @apply flex items-center justify-center;
-}
-
-.inputstyles {
-  @apply text-white bg-[#2A2A2D] w-12 h-5;
-}
-
-.func {
-  @apply flex flex-col items-center;
+.hovered {
+  background-image: url('../../../public/img/yellowStar.svg');
 }
 
 .comment {
@@ -140,20 +133,21 @@
   transition: padding 0.3s ease;
 }
 .headerComment {
-  @apply text-2xl;
+  @apply phone:text-3xl  text-2xl;
 }
 .bodyComment {
   @apply flex flex-col w-[100%];
 }
 
 .tableComments {
-  @apply flex flex-col items-start gap-4 min-w-[200px]  max-w-[800px] flex-wrap;
+  @apply grid gap-4 min-w-[200px] max-w-[1280px] flex-wrap w-full mt-5 grid-cols-1;
+  align-content: start;
 }
 
 .buttonWrite {
   @apply w-32 my-4 rounded-2xl border-0 text-white cursor-pointer h-12 text-sm hover:scale-105 flex justify-center items-center;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+  background: #5c469c;
 }
 
 .buttonWrite:focus {
@@ -166,8 +160,8 @@
 
 .textCommentBox {
   @apply bg-[#2A2A2D]
-  max-w-[800px] min-w-[200px] w-[fit] h-20 rounded-xl px-5 py-2;
-  border: 3px #8524a7 solid;
+  max-w-[1200px] min-w-[200px] min-h-[100px] w-[fit] h-24 rounded-xl px-5 py-2;
+  border: 3px #5c469c solid;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
   border-radius: 12px;
 }

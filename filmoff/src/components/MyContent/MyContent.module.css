@@ -7,7 +7,7 @@
 .buttonTable {
   @apply w-40 mt-10 my-5 rounded-2xl border-0 text-white cursor-pointer h-14 text-lg hover:scale-105 flex justify-center items-center;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+  background: #5c469c;
 }
 
 .buttonTable:focus {
@@ -24,7 +24,7 @@
 
 .mainWatched {
   @apply bg-[#2A2A2D] p-5  rounded-xl max-w-[1200px] mt-5;
-  border: 3px #8524a7 solid;
+  border: 3px #5c469c solid;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -41,9 +41,10 @@
 }
 
 .mainVote {
-  @apply bg-[#2A2A2D] p-6  rounded-xl max-w-[1000px] mt-14;
-  border: 3px #8524a7 solid;
+  @apply bg-[#2A2A2D] sm:p-6 py-6 px-3 rounded-xl max-w-[1000px] mt-14;
+  border: 3px #5c469c solid;
   font-family: 'Roboto', sans-serif;
+  transition: padding 0.3s ease;
 }
 
 .filterUp {
@@ -85,7 +86,8 @@
 }
 
 .tableVote {
-  @apply mt-9 flex flex-col justify-center items-start gap-6 flex-wrap w-full;
+  @apply mt-9 flex flex-col justify-center items-start md:gap-8 gap-14 flex-wrap w-full;
+  transition: gap 0.3s ease;
 }
 
 .none {

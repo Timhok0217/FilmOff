@@ -10,7 +10,7 @@
 }
 .profile {
   @apply bg-[#2A2A2D] phone:px-10 px-5 py-6 w-[100%] rounded-xl max-w-[525px] mt-10;
-  border: 3px #8524a7 solid;
+  border: 3px #5c469c solid;
   font-family: 'Roboto', sans-serif;
   transition: padding 0.3s ease;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -30,7 +30,7 @@
 }
 
 .nameInfo {
-  @apply flex phone:min-w-[110px] min-w-[75px];
+  @apply flex phone:min-w-[110px] min-w-[65px] text-left;
 }
 
 .buttonDiv {
@@ -40,7 +40,7 @@
 .button {
   @apply w-[100%] my-1 rounded-2xl border-0 text-white cursor-pointer h-12 text-lg hover:scale-105;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+  background: #5c469c;
 }
 
 .button:focus {
@@ -78,7 +78,6 @@
 
   min-width: 26px;
   height: 26px;
-  margin-right: 8px;
   border-radius: 2px;
 
   background-color: #fff;
@@ -87,7 +86,7 @@
   background-image: cover;
   background-size: 135%;
   background-position: center center;
-  border: 3px #8524a7 solid;
+  border: 3px #5c469c solid;
   cursor: pointer;
 
   &:focus {
@@ -101,7 +100,7 @@
 
 .mainWatched {
   @apply bg-[#2A2A2D] p-5  rounded-xl max-w-[1200px] mt-14;
-  border: 3px #8524a7 solid;
+  border: 3px #5c469c solid;
   font-family: 'Roboto', sans-serif;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
   border-radius: 12px;
