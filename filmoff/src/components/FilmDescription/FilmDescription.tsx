@@ -16,7 +16,7 @@ import {
   updateDoc,
 } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 interface FilmInfo {
   id: string
@@ -60,6 +60,7 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
   const savedFilmsRef = collection(db, 'savedFilms')
   const voteFilmsRef = collection(db, 'voteFilms')
   const commentsRef = collection(db, 'comments')
+  const { id } = useParams()
 
   const navigate = useNavigate()
   const [dataLoaded, setDataLoaded] = useState(true)
@@ -135,9 +136,7 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
 
   useEffect(() => {
     fetchDBVoteFilms()
-    if (savedFilms.length > 0) {
-      setDataLoaded(false)
-    }
+    fetchDBSavedFilms()
   }, [auth.currentUser?.uid, filmInfo?.id])
 
   useEffect(() => {
@@ -149,23 +148,47 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
     })
     getComments()
 
-    if (savedFilms.length > 0) {
-      setDataLoaded(false)
-    }
     return unsubscribe
   }, [filmInfo])
 
   useEffect(() => {
+    let timeoutId: string | number | NodeJS.Timeout | undefined
+
     const savedFilm = savedFilms.find((film) => film.id === filmInfo?.id)
     if (savedFilm) {
       setMovieSave(true)
     } else {
       setMovieSave(false)
     }
-    if (savedFilms.length > 0) {
-      setDataLoaded(false)
+    if (
+      (savedFilms.length > 0 || votes || comments.length > 0) &&
+      filmInfo?.id === id
+    ) {
+      timeoutId = setTimeout(() => {
+        if (!(filmInfo && !dataLoaded)) {
+          setDataLoaded(false)
+        }
+      }, 800)
+    }
+
+    return () => {
+      clearTimeout(timeoutId)
     }
   }, [savedFilms, filmInfo])
+
+  useEffect(() => {
+    let timeoutId: string | number | NodeJS.Timeout | undefined
+    if (filmInfo?.id === id) {
+      timeoutId = setTimeout(() => {
+        if (!(filmInfo && !dataLoaded)) {
+          setDataLoaded(false)
+        }
+      }, 800)
+    }
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [filmInfo])
 
   const handleFilmClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     setMovieSave((prev) => !prev)
@@ -288,6 +311,7 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
       return
     }
     setCommentOpen((prev) => !prev)
+    setCommentDraft('')
   }
 
   const handleSaveComment = async () => {
@@ -323,15 +347,15 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
       {!dataLoaded && (
         <>
           <div className={styles.imgAndInfo}>
-            <div className={styles.img}>
-              {filmInfo && filmInfo.image && (
+            {filmInfo && filmInfo.image && (
+              <div className={styles.img}>
                 <img
                   src={filmInfo.image}
                   className={styles.imgSet}
                   alt="poster"
                 />
-              )}
-            </div>
+              </div>
+            )}
 
             <div className={styles.info}>
               <div className={styles.name}>
@@ -439,7 +463,7 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
             <div className={styles.bodyComment}>
               <div className={styles.buttonsGaps}>
                 <div className={styles.buttonWrite} onClick={handleComment}>
-                  Написать комментарий
+                  {commentOpen ? 'Скрыть комментарий' : 'Написать комментарий'}
                 </div>
                 {commentOpen && (
                   <div
@@ -457,6 +481,7 @@ const FilmDescription: React.FC<Props> = ({ filmInfo }) => {
                   maxLength={200}
                   value={commentDraft}
                   onChange={(e) => setCommentDraft(e.target.value)}
+                  autoFocus
                 />
               )}
             </div>

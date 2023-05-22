@@ -60,7 +60,7 @@ const HomePage: React.FC<Props> = ({ film }) => {
           } else {
             //2 запроса к api - из-за рейтинга
             const response = await axios.get(
-              `https://imdb-api.com/API/AdvancedSearch/k_43to2og1?title=${film}`
+              `https://imdb-api.com/API/AdvancedSearch/k_084d6kh1?title=${film.replace(/[^a-zA-Z0-9а-яА-ЯёЁ\s!?.]/g, '')}`
             )
             const { data } = response
             setSearchResults(data.results)
@@ -139,7 +139,7 @@ const HomePage: React.FC<Props> = ({ film }) => {
         <>
           <div className={styles.header}>
             {localStorage.getItem('lastSearch')
-              ? 'Результаты поиска:'
+              ? `Результаты поиска ${localStorage.getItem('lastSearch')}:`
               : 'Самые популярные фильмы:'}
           </div>
           {results.length > 0 ? (

@@ -29,6 +29,12 @@
   @apply flex flex-col gap-6 my-10;
 }
 
+.underline {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-underline-offset: 8px;
+}
+
 .nameInfo {
   @apply flex phone:min-w-[110px] min-w-[65px] text-left;
 }

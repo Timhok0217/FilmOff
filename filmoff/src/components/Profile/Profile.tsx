@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Profile.module.css'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { auth, db } from '../../config/firebase'
 import SavedFilmTable from '../SavedFilmTable/SavedFilmTable'
 
@@ -181,6 +181,7 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
 
     try {
       await updateUserInCollection(ref, event.target.checked)
+      setIsShowFilms(event.target.checked)
     } catch (error) {
       console.error('Error upd user:', error)
     } finally {
@@ -189,9 +190,9 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
 
   return (
     <div className={styles.page}>
-      {(isYourProfile || diffUser) && users.length > 0 && (
+      {(isYourProfile || diffUser) && users && (
         <div className={styles.main}>
-          {isLoading ? (
+          {isLoading || !users ? (
             <div className={styles.loader}>
               <div className={styles.loaderimg} />
             </div>
@@ -209,7 +210,13 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
                   )}
                   <div className={styles.infoLine}>
                     <div className={styles.nameInfo}>Сохраненное</div>
-                    <div>{isLoading ? '' : savedFilms.length}</div>
+                    <div className={styles.underline}>
+                      {isLoading ? (
+                        ''
+                      ) : (
+                        <Link to="/myPage">{savedFilms.length}</Link>
+                      )}
+                    </div>
                   </div>
 
                   {diffUser ? null : (
@@ -230,7 +237,13 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
                   )}
                   <div className={styles.infoLine}>
                     <div className={styles.nameInfo}>Оценки</div>
-                    <div>{isLoading ? '' : votes.length}</div>
+                    <div className={styles.underline}>
+                      {isLoading ? (
+                        ''
+                      ) : (
+                        <Link to="/myPage#ratings">{votes.length}</Link>
+                      )}
+                    </div>
                   </div>
                   <div className={styles.infoLine}>
                     <div className={styles.nameInfo}>Комментарии</div>

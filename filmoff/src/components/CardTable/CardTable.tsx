@@ -21,11 +21,12 @@ interface CardTableProps {
 const CardTable: React.FC<CardTableProps> = ({ popularFilms, isLoading }) => {
   return (
     <div className={styles.table}>
-      {popularFilms.map((item: any, index: number) => (
-        <div key={index}>
-          <CardFilm cardProps={item} isLoading={isLoading} />
-        </div>
-      ))}
+      {popularFilms.length > 0 &&
+        popularFilms.map((item: any, index: number) => (
+          <div key={index}>
+            <CardFilm cardProps={item} isLoading={isLoading} />
+          </div>
+        ))}
     </div>
   )
 }

@@ -87,6 +87,18 @@ const MyContent = () => {
     }
   }, [voteFilms, sortOrder])
 
+  useEffect(() => {
+    if (!dataLoaded) {
+      const hash = window.location.hash
+      if (hash) {
+        const element = document.querySelector(hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }
+    }
+  }, [dataLoaded])
+
   return (
     <>
       <div className={styles.page}>
@@ -130,7 +142,7 @@ const MyContent = () => {
         )}
 
         {sortedVoteFilms.length > 0 && (
-          <div className={styles.mainVote}>
+          <div className={styles.mainVote} id="ratings">
             <div className={styles.headerBlock}>
               Оценки
               <div

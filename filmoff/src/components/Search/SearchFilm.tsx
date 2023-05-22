@@ -23,11 +23,19 @@ const SearchFilm: React.FC<any> = ({ onFilmChange, onBlur }) => {
 
     const cleanedQuery = query.trim().toLowerCase()
 
-    // Проверка на спец символы
-    const regex = /^[a-zA-Z0-9а-яА-ЯёЁ\s.,?!@#$%^&*()_+-=<>:;'"`~{}\[\]]+$/
-    if (cleanedQuery && regex.test(cleanedQuery)) {
+    //Удаление спец символов
+    const sanitizedQuery = cleanedQuery.replace(
+      /[^a-zA-Z0-9а-яА-ЯёЁ\s!?.]/g,
+      ''
+    )
+
+    const formattedQuery = sanitizedQuery.replace(/\s{2,}/g, ' ') //Замена двойных пробелов на одинарные
+
+    if (formattedQuery) {
       try {
-        const searchResults = await onFilmChange(cleanedQuery)
+        const searchResults = await onFilmChange(
+          cleanedQuery.replace(/\s{2,}/g, ' ')
+        )
 
         if (currentPath !== '/') {
           onBlur()
@@ -39,7 +47,7 @@ const SearchFilm: React.FC<any> = ({ onFilmChange, onBlur }) => {
           localStorage.getItem('allSearchResults') || '[]'
         )
         const existingSearch = allSearchResults.find(
-          (search: any) => search.title === cleanedQuery
+          (search: any) => search.title === cleanedQuery.replace(/\s{2,}/g, ' ')
         )
 
         if (!existingSearch) {
@@ -47,7 +55,7 @@ const SearchFilm: React.FC<any> = ({ onFilmChange, onBlur }) => {
             allSearchResults.shift() // удаляем первый элемент
           }
           allSearchResults.push({
-            title: cleanedQuery,
+            title: cleanedQuery.replace(/\s{2,}/g, ' '),
             results: searchResults.data,
           }) // добавляем новый элемент в конец
           localStorage.setItem(
