@@ -88,17 +88,24 @@ const MyContent = () => {
   }, [voteFilms, sortOrder])
 
   useEffect(() => {
+    let timeoutId: string | number | NodeJS.Timeout | undefined
+  
     if (!dataLoaded) {
       const hash = window.location.hash
       if (hash) {
-        const element = document.querySelector(hash)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
+        timeoutId = setTimeout(() => {
+          const element = document.querySelector(hash)
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+          }
+        }, 400)
       }
     }
+  
+    return () => {
+      clearTimeout(timeoutId)
+    }
   }, [dataLoaded])
-
   return (
     <>
       <div className={styles.page}>

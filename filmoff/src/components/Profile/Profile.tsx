@@ -108,6 +108,7 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
           }
         } else {
           //reg и нету в списке юзера - переходим к себе
+
           setIsYourProfile(true)
           setDiffUser('')
           if (users.length > 0 && isYourProfile) {
@@ -117,7 +118,7 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
       }
     })
     return unsubscribe
-  }, [id, navigate, users])
+  }, [id, users])
 
   useEffect(() => {
     if (!isYourProfile && !diffUser) return
@@ -210,11 +211,11 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
                   )}
                   <div className={styles.infoLine}>
                     <div className={styles.nameInfo}>Сохраненное</div>
-                    <div className={styles.underline}>
-                      {isLoading ? (
-                        ''
-                      ) : (
+                    <div className={isYourProfile ? styles.underline : ''}>
+                      {isYourProfile ? (
                         <Link to="/myPage">{savedFilms.length}</Link>
+                      ) : (
+                        savedFilms.length
                       )}
                     </div>
                   </div>
@@ -237,11 +238,11 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
                   )}
                   <div className={styles.infoLine}>
                     <div className={styles.nameInfo}>Оценки</div>
-                    <div className={styles.underline}>
-                      {isLoading ? (
-                        ''
-                      ) : (
+                    <div className={isYourProfile ? styles.underline : ''}>
+                      {isYourProfile ? (
                         <Link to="/myPage#ratings">{votes.length}</Link>
+                      ) : (
+                        votes.length
                       )}
                     </div>
                   </div>
