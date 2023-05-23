@@ -24,7 +24,7 @@ const HomePage: React.FC<Props> = ({ film }) => {
           setPopularFilms(savedFilms as any)
         } else {
           const response = await axios.get(
-            'https://imdb-api.com/en/API/MostPopularMovies/k_084d6kh1'
+            'https://imdb-api.com/en/API/MostPopularMovies/k_z3slxcrh'
           )
           const { data } = response
           setPopularFilms(data.items)
@@ -60,7 +60,10 @@ const HomePage: React.FC<Props> = ({ film }) => {
           } else {
             //2 запроса к api - из-за рейтинга
             const response = await axios.get(
-              `https://imdb-api.com/API/AdvancedSearch/k_084d6kh1?title=${film.replace(/[^a-zA-Z0-9а-яА-ЯёЁ\s!?.]/g, '')}`
+              `https://imdb-api.com/API/AdvancedSearch/k_z3slxcrh?title=${film.replace(
+                /[^a-zA-Z0-9а-яА-ЯёЁ\s!?.]/g,
+                ''
+              )}`
             )
             const { data } = response
             setSearchResults(data.results)
@@ -144,13 +147,16 @@ const HomePage: React.FC<Props> = ({ film }) => {
           </div>
           {results.length > 0 ? (
             <CardTable popularFilms={results} isLoading={isLoading} />
-          ) : (
-            <div className={styles.header}>
-              Не удалось ничего найти! Повторите поиск
-            </div>
-          )}
+          ) : null}
         </>
       )}
+      {!isPageLoading &&
+        results.length === 0 &&
+        localStorage.getItem('lastSearch') && (
+          <div className={styles.header}>
+            Не удалось ничего найти! Повторите поиск
+          </div>
+        )}
     </>
   )
 }

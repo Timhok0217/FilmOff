@@ -229,7 +229,7 @@ const Profile: React.FC<ProfileProps> = ({ handleLogout }) => {
                       <div className={styles.checkboxContainer}>
                         <input
                           type="checkbox"
-                          checked={isShowFilms}
+                          checked={(isShowFilms ? true : false) || false}
                           onChange={handleCheckboxChange}
                           className={styles.checkbox}
                         />

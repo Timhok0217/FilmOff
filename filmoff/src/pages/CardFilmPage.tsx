@@ -45,7 +45,7 @@ const CardFilmPage = () => {
             }
           }
           const response = await axios.get(
-            `https://imdb-api.com/en/API/Title/k_wekuwc81/${id}`
+            `https://imdb-api.com/en/API/Title/k_43to2og1/${id}`
           )
           const { data } = response
           setFilmInfo(data)

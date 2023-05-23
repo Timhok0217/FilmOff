@@ -54,6 +54,7 @@ const SearchFilm: React.FC<any> = ({ onFilmChange, onBlur }) => {
           if (allSearchResults.length >= 12) {
             allSearchResults.shift() // удаляем первый элемент
           }
+
           allSearchResults.push({
             title: cleanedQuery.replace(/\s{2,}/g, ' '),
             results: searchResults.data,
