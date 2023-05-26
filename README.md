@@ -1,7 +1,14 @@
 # FilmOff
 
+![TypeScript](https://img.shields.io/badge/-TypeScript-090909?style=for-the-badge&logo=typescript&logoColor=3178C6)
+![React](https://img.shields.io/badge/-React-090909?style=for-the-badge&logo=react&logoColor=47C5FB)
+![Axios](https://img.shields.io/badge/-Axios-090909?style=for-the-badge&logo=axios&logoColor=671DDF)
+![Tailwind](https://img.shields.io/badge/-Tailwind-090909?style=for-the-badge&logo=tailwindcss&logoColor=47C5FB)
+![Firebase](https://img.shields.io/badge/-Firebase-090909?style=for-the-badge&logo=firebase&logoColor=#FFCB2E)
+![IMDB-API](https://img.shields.io/badge/-IMDB--API-090909?style=for-the-badge&logo=IMDB&logoColor=E2B616)
+
+
 ## Курсовой проект на курсе Tinkoff Fintech School, Frontend, весна 2023
-Выполнил <u>Тимошевский Тимофей Петрович </u> 
 
 Ссылка на общедоступный адрес веб-приложения: [FilmOff](https://coursework-timhok0217-17.vercel.app/ "Добро пожаловать!")
 
