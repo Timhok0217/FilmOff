@@ -1,20 +1,22 @@
 # FilmOff
 
 ![TypeScript](https://img.shields.io/badge/-TypeScript-090909?style=for-the-badge&logo=typescript&logoColor=3178C6)
-![React](https://img.shields.io/badge/-React-090909?style=for-the-badge&logo=react&logoColor=47C5FB)
+![JavaScript](https://img.shields.io/badge/-JavaScript-090909?style=for-the-badge&logo=javascript&logoColor=#3178C6)
+![React](https://img.shields.io/badge/-React-090909?style=for-the-badge&logo=react&logoColor=#47C5FB)
 ![Axios](https://img.shields.io/badge/-Axios-090909?style=for-the-badge&logo=axios&logoColor=671DDF)
-![Tailwind](https://img.shields.io/badge/-Tailwind-090909?style=for-the-badge&logo=tailwindcss&logoColor=47C5FB)
+![Tailwind](https://img.shields.io/badge/-Tailwind-090909?style=for-the-badge&logo=tailwindcss&logoColor=#47C5FB)
 ![Firebase](https://img.shields.io/badge/-Firebase-090909?style=for-the-badge&logo=firebase&logoColor=#FFCB2E)
 ![IMDB-API](https://img.shields.io/badge/-IMDB--API-090909?style=for-the-badge&logo=IMDB&logoColor=E2B616)
 
 
-## Курсовой проект на курсе Tinkoff Fintech School, Frontend, весна 2023
+## Курсовой проект Tinkoff Fintech School, Frontend
 
 Ссылка на общедоступный адрес веб-приложения: [FilmOff](https://coursework-timhok0217-17.vercel.app/ "Добро пожаловать!")
 
 
 ## Описание проекта
-<b>FilmOff</b> - приложение онлайн-кинотеатр для настоящих киноманов. Оценивайте просмотренные фильмы и сериалы и оставляйте к ним комментарии. В приложении можно создавать список любимых (сохраенных) фильмов и публиковать его в общий доступ.
+
+<b>FilmOff</b> - приложение онлайн-кинотеатр для настоящих киноманов. Оценивайте просмотренные фильмы и сериалы и оставляйте к ним комментарии. В приложении можно создавать список любимых (сохраненных) фильмов и публиковать его в общий доступ.
 
 
 1. FilmOff решает задачу обеспечения пользователей удобным и централизованным доступом к информации о видеоматериалах. Приложение помогает пользователям быть в курсе актуальных кинопремьер, находить интересные фильмы для собственного просмотра и получать обратную связь от сообщества - других пользователей.
